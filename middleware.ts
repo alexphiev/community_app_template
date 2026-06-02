@@ -1,6 +1,6 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
-import { hasPermission } from "@/lib/roles"
+import { ROLES, hasPermission } from "@/lib/roles"
 import type { Role } from "@/lib/roles"
 
 type RouteRequirement = "admin" | "chat" | "resources" | "news" | "agenda" | "directory" | "authenticated" | null
@@ -29,8 +29,9 @@ export default auth((req) => {
 
   if (requirement === "authenticated") return NextResponse.next()
 
-  const role = session.user.role as Role
-  if (!hasPermission(role, requirement)) {
+  const rawRole = session.user.role
+  const role = (Object.values(ROLES) as string[]).includes(rawRole) ? (rawRole as Role) : null
+  if (!role || !hasPermission(role, requirement)) {
     return NextResponse.redirect(new URL("/dashboard", req.url))
   }
 

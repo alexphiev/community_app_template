@@ -1,13 +1,9 @@
 import { pgTable, text, timestamp, boolean, integer, pgEnum, primaryKey } from "drizzle-orm/pg-core"
 import { createId } from "@paralleldrive/cuid2"
+import { ROLES } from "@/lib/roles"
 
-export const roleEnum = pgEnum("role", [
-  "admin_ij_pdl",
-  "salarie_ij_pdl",
-  "pro_reseau_ij",
-  "relais_externe",
-  "guest",
-])
+const roleValues = Object.values(ROLES) as [string, ...string[]]
+export const roleEnum = pgEnum("role", roleValues)
 
 export const users = pgTable("user", {
   id: text("id").primaryKey().$defaultFn(() => createId()),
