@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, pgEnum } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, boolean, integer, pgEnum, primaryKey } from "drizzle-orm/pg-core"
 import { createId } from "@paralleldrive/cuid2"
 
 export const roleEnum = pgEnum("role", [
@@ -9,11 +9,11 @@ export const roleEnum = pgEnum("role", [
   "guest",
 ])
 
-export const users = pgTable("users", {
+export const users = pgTable("user", {
   id: text("id").primaryKey().$defaultFn(() => createId()),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  emailVerified: timestamp("email_verified"),
+  name: text("name"),
+  email: text("email").unique(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
   role: roleEnum("role").notNull().default("pro_reseau_ij"),
   structure: text("structure"),
@@ -23,30 +23,40 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 })
 
-// NextAuth required tables
-export const accounts = pgTable("accounts", {
-  id: text("id").primaryKey().$defaultFn(() => createId()),
-  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-  type: text("type").notNull(),
-  provider: text("provider").notNull(),
-  providerAccountId: text("provider_account_id").notNull(),
-  refreshToken: text("refresh_token"),
-  accessToken: text("access_token"),
-  expiresAt: timestamp("expires_at"),
-  tokenType: text("token_type"),
-  scope: text("scope"),
-  idToken: text("id_token"),
+export const accounts = pgTable(
+  "account",
+  {
+    userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    type: text("type").notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("providerAccountId").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
+    id_token: text("id_token"),
+    session_state: text("session_state"),
+  },
+  (account) => ({
+    compositePk: primaryKey({ columns: [account.provider, account.providerAccountId] }),
+  })
+)
+
+export const sessions = pgTable("session", {
+  sessionToken: text("sessionToken").primaryKey(),
+  userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
 })
 
-export const sessions = pgTable("sessions", {
-  id: text("id").primaryKey().$defaultFn(() => createId()),
-  sessionToken: text("session_token").notNull().unique(),
-  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-  expires: timestamp("expires").notNull(),
-})
-
-export const verificationTokens = pgTable("verification_tokens", {
-  identifier: text("identifier").notNull(),
-  token: text("token").notNull().unique(),
-  expires: timestamp("expires").notNull(),
-})
+export const verificationTokens = pgTable(
+  "verificationToken",
+  {
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (vt) => ({
+    compositePk: primaryKey({ columns: [vt.identifier, vt.token] }),
+  })
+)
