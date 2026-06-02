@@ -10,8 +10,8 @@ export default async function DashboardPage() {
       >
         Bonjour {session?.user.name?.split(" ")[0]}.
       </h2>
-      <p className="text-[18px] text-[#3e4948] leading-[1.55]">
-        Voici ce qu'il se passe sur votre réseau Info Jeunes aujourd'hui.
+      <p className="text-[18px] text-on-surface-variant leading-[1.55]">
+        Voici ce qu&apos;il se passe sur votre réseau Info Jeunes aujourd&apos;hui.
       </p>
     </section>
   )
