@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "resources": "Ressources",
+    "news": "Actualités",
+    "agenda": "Agenda",
+    "chat": "Messagerie",
+    "directory": "Annuaire",
+    "admin": "Administration"
+  },
+  "auth": {
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "email": "Email",
+    "password": "Mot de passe"
+  }
+}
