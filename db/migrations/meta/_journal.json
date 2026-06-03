@@ -29,6 +29,13 @@
       "when": 1780516640473,
       "tag": "0003_loose_loners",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1780518935573,
+      "tag": "0004_nebulous_giant_girl",
+      "breakpoints": true
     }
   ]
 }

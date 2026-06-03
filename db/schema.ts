@@ -274,3 +274,68 @@ export const eventRsvpsRelations = relations(eventRsvps, ({ one }) => ({
   event: one(events, { fields: [eventRsvps.eventId], references: [events.id] }),
   user: one(users, { fields: [eventRsvps.userId], references: [users.id] }),
 }))
+
+// ─── Chat ─────────────────────────────────────────────────────────────────────
+
+export const channelTypeEnum = pgEnum("channel_type", ["channel", "direct"])
+
+export const notifPrefEnum = pgEnum("notif_pref", ["all", "mentions", "digest", "muted"])
+
+export const channels = pgTable("channels", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  name: text("name").notNull(),
+  description: text("description"),
+  type: channelTypeEnum("type").notNull().default("channel"),
+  createdById: text("created_by_id").notNull().references(() => users.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+}, (t) => [
+  index("channels_type_idx").on(t.type),
+])
+
+export const channelMembers = pgTable("channel_members", {
+  channelId: text("channel_id").notNull().references(() => channels.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  joinedAt: timestamp("joined_at").notNull().defaultNow(),
+}, (t) => [
+  primaryKey({ columns: [t.channelId, t.userId] }),
+])
+
+export const chatMessages = pgTable("chat_messages", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  channelId: text("channel_id").notNull().references(() => channels.id, { onDelete: "cascade" }),
+  authorId: text("author_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  body: text("body").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  editedAt: timestamp("edited_at"),
+}, (t) => [
+  index("chat_messages_channel_idx").on(t.channelId, t.createdAt),
+])
+
+export const notificationPrefs = pgTable("notification_prefs", {
+  channelId: text("channel_id").notNull().references(() => channels.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  pref: notifPrefEnum("pref").notNull().default("all"),
+}, (t) => [
+  primaryKey({ columns: [t.channelId, t.userId] }),
+])
+
+export const channelsRelations = relations(channels, ({ one, many }) => ({
+  createdBy: one(users, { fields: [channels.createdById], references: [users.id] }),
+  members: many(channelMembers),
+  messages: many(chatMessages),
+}))
+
+export const channelMembersRelations = relations(channelMembers, ({ one }) => ({
+  channel: one(channels, { fields: [channelMembers.channelId], references: [channels.id] }),
+  user: one(users, { fields: [channelMembers.userId], references: [users.id] }),
+}))
+
+export const chatMessagesRelations = relations(chatMessages, ({ one }) => ({
+  channel: one(channels, { fields: [chatMessages.channelId], references: [channels.id] }),
+  author: one(users, { fields: [chatMessages.authorId], references: [users.id] }),
+}))
+
+export const notificationPrefsRelations = relations(notificationPrefs, ({ one }) => ({
+  channel: one(channels, { fields: [notificationPrefs.channelId], references: [channels.id] }),
+  user: one(users, { fields: [notificationPrefs.userId], references: [users.id] }),
+}))
