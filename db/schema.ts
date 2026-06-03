@@ -178,3 +178,99 @@ export const shareLinksRelations = relations(shareLinks, ({ one }) => ({
 export const resourceFilesRelations = relations(resourceFiles, ({ one }) => ({
   resource: one(resources, { fields: [resourceFiles.resourceId], references: [resources.id] }),
 }))
+
+// ─── Posts / Newsfeed ────────────────────────────────────────────────────────
+
+export const posts = pgTable("posts", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  authorId: text("author_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  body: text("body").notNull(),
+  pinned: boolean("pinned").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+}, (t) => [
+  index("posts_author_idx").on(t.authorId),
+  index("posts_created_idx").on(t.createdAt),
+])
+
+export const postComments = pgTable("post_comments", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  postId: text("post_id").notNull().references(() => posts.id, { onDelete: "cascade" }),
+  authorId: text("author_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  parentId: text("parent_id").references((): AnyPgColumn => postComments.id, { onDelete: "cascade" }),
+  body: text("body").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+}, (t) => [
+  index("post_comments_post_idx").on(t.postId),
+])
+
+export const postReactions = pgTable("post_reactions", {
+  postId: text("post_id").notNull().references(() => posts.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  emoji: text("emoji").notNull().default("👍"),
+}, (t) => [
+  primaryKey({ columns: [t.postId, t.userId] }),
+])
+
+// ─── Events / Agenda ─────────────────────────────────────────────────────────
+
+export const eventCategoryEnum = pgEnum("event_category", [
+  "formation",
+  "reunion",
+  "evenement",
+  "autre",
+])
+
+export const events = pgTable("events", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  title: text("title").notNull(),
+  description: text("description"),
+  location: text("location"),
+  startAt: timestamp("start_at").notNull(),
+  endAt: timestamp("end_at").notNull(),
+  category: eventCategoryEnum("category").notNull().default("evenement"),
+  isInternal: boolean("is_internal").notNull().default(true),
+  externalFormUrl: text("external_form_url"),
+  openAgendaId: text("open_agenda_id"),
+  createdById: text("created_by_id").notNull().references(() => users.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+}, (t) => [
+  index("events_start_idx").on(t.startAt),
+])
+
+export const eventRsvps = pgTable("event_rsvps", {
+  eventId: text("event_id").notNull().references(() => events.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+}, (t) => [
+  primaryKey({ columns: [t.eventId, t.userId] }),
+])
+
+export const postsRelations = relations(posts, ({ one, many }) => ({
+  author: one(users, { fields: [posts.authorId], references: [users.id] }),
+  comments: many(postComments),
+  reactions: many(postReactions),
+}))
+
+export const postCommentsRelations = relations(postComments, ({ one, many }) => ({
+  post: one(posts, { fields: [postComments.postId], references: [posts.id] }),
+  author: one(users, { fields: [postComments.authorId], references: [users.id] }),
+  parent: one(postComments, { fields: [postComments.parentId], references: [postComments.id] }),
+  replies: many(postComments),
+}))
+
+export const postReactionsRelations = relations(postReactions, ({ one }) => ({
+  post: one(posts, { fields: [postReactions.postId], references: [posts.id] }),
+  user: one(users, { fields: [postReactions.userId], references: [users.id] }),
+}))
+
+export const eventsRelations = relations(events, ({ one, many }) => ({
+  createdBy: one(users, { fields: [events.createdById], references: [users.id] }),
+  rsvps: many(eventRsvps),
+}))
+
+export const eventRsvpsRelations = relations(eventRsvps, ({ one }) => ({
+  event: one(events, { fields: [eventRsvps.eventId], references: [events.id] }),
+  user: one(users, { fields: [eventRsvps.userId], references: [users.id] }),
+}))
