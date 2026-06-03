@@ -6,6 +6,7 @@ import type { Role } from "@/lib/roles"
 type RouteRequirement = "admin" | "chat" | "resources" | "news" | "agenda" | "directory" | "authenticated" | null
 
 export function getRouteRole(pathname: string): RouteRequirement {
+  if (pathname.startsWith("/share")) return null
   if (pathname.startsWith("/admin")) return "admin"
   if (pathname.startsWith("/chat")) return "chat"
   if (pathname.startsWith("/resources")) return "resources"
