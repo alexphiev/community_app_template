@@ -9,7 +9,14 @@ const resourceBaseSchema = z.object({
   body: z.string().optional(),
   type: z.enum(RESOURCE_TYPES),
   mediaType: z.enum(MEDIA_TYPES).optional(),
-  externalUrl: z.string().url("URL invalide").optional(),
+  externalUrl: z
+    .string()
+    .url("URL invalide")
+    .refine(
+      (u) => u.startsWith("http://") || u.startsWith("https://"),
+      "Seules les URLs http/https sont autorisées"
+    )
+    .optional(),
   tagIds: z.array(z.string()).default([]),
 })
 

@@ -15,6 +15,13 @@
       "when": 1780437466144,
       "tag": "0001_misty_mathemanic",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780466968553,
+      "tag": "0002_last_vindicator",
+      "breakpoints": true
     }
   ]
 }

@@ -18,8 +18,10 @@ export function buildS3Key(prefix: string, resourceId: string, filename: string)
   return `${prefix}/${resourceId}/${safe}`
 }
 
-export function parseS3KeyResourceId(key: string): string {
-  return key.split("/")[1] ?? ""
+export function parseS3KeyResourceId(key: string): string | undefined {
+  const parts = key.split("/")
+  if (parts.length < 3) return undefined
+  return parts[1]
 }
 
 export async function uploadToS3(

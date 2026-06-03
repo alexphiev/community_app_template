@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, integer, pgEnum, primaryKey, index } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, boolean, integer, pgEnum, primaryKey, index, type AnyPgColumn } from "drizzle-orm/pg-core"
 import { createId } from "@paralleldrive/cuid2"
 import { ROLES } from "@/lib/roles"
 
@@ -118,13 +118,15 @@ export const resourceFiles = pgTable("resource_files", {
 export const resourceTags = pgTable("resource_tags", {
   resourceId: text("resource_id").notNull().references(() => resources.id, { onDelete: "cascade" }),
   tagId: text("tag_id").notNull().references(() => tags.id, { onDelete: "cascade" }),
-})
+}, (t) => [
+  primaryKey({ columns: [t.resourceId, t.tagId] }),
+])
 
 export const comments = pgTable("comments", {
   id: text("id").primaryKey().$defaultFn(() => createId()),
   resourceId: text("resource_id").notNull().references(() => resources.id, { onDelete: "cascade" }),
   authorId: text("author_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-  parentId: text("parent_id"),
+  parentId: text("parent_id").references((): AnyPgColumn => comments.id, { onDelete: "cascade" }),
   body: text("body").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
@@ -141,6 +143,4 @@ export const shareLinks = pgTable("share_links", {
   expiresAt: timestamp("expires_at"),
   createdById: text("created_by_id").notNull().references(() => users.id),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-}, (t) => [
-  index("share_links_token_idx").on(t.token),
-])
+})

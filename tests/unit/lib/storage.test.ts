@@ -22,8 +22,7 @@ describe("buildS3Key", () => {
 
   it("sanitizes filename to prevent path traversal", () => {
     const key = buildS3Key("resources", "resource-123", "../../etc/passwd")
-    expect(key).not.toContain("..")
-    expect(key).not.toContain("/etc/")
+    expect(key).toBe("resources/resource-123/passwd")
   })
 })
 
@@ -31,6 +30,20 @@ describe("parseS3KeyResourceId", () => {
   it("extracts resource id from s3 key", () => {
     const id = parseS3KeyResourceId("resources/resource-123/guide.pdf")
     expect(id).toBe("resource-123")
+  })
+})
+
+describe("parseS3KeyResourceId — edge cases", () => {
+  it("returns undefined for a flat key with no slashes", () => {
+    expect(parseS3KeyResourceId("orphan-file.pdf")).toBeUndefined()
+  })
+
+  it("returns undefined for an empty string", () => {
+    expect(parseS3KeyResourceId("")).toBeUndefined()
+  })
+
+  it("returns undefined for a key with only one segment", () => {
+    expect(parseS3KeyResourceId("resources/")).toBeUndefined()
   })
 })
 
