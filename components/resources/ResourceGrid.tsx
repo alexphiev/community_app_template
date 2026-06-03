@@ -17,7 +17,7 @@ export function ResourceGrid({ resources, total, page, pageSize = 12 }: Resource
     <section className="flex-1 min-w-0">
       <div className="flex items-center justify-between mb-6">
         <p className="text-[14px] text-[#6e7978]">
-          <span className="font-bold text-[#181d1c]">{total}</span>{" "}
+          <span className="font-bold text-on-surface">{total}</span>{" "}
           ressource{total !== 1 ? "s" : ""} trouvée{total !== 1 ? "s" : ""}
         </p>
       </div>
@@ -29,18 +29,18 @@ export function ResourceGrid({ resources, total, page, pageSize = 12 }: Resource
           aria-label="Aucune ressource trouvée"
         >
           <span
-            className="material-symbols-outlined text-[48px] text-[#bdc9c7] mb-4"
+            className="material-symbols-outlined text-[48px] text-outline-variant mb-4"
             aria-hidden="true"
           >
             folder_open
           </span>
           <h3
-            className="text-[24px] font-semibold text-[#181d1c] mb-2"
+            className="text-[24px] font-semibold text-on-surface mb-2"
             style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
           >
             Aucune ressource trouvée
           </h3>
-          <p className="text-[14px] text-[#3e4948]">
+          <p className="text-[14px] text-on-surface-variant">
             Essayez de modifier vos filtres ou d&apos;ajouter de nouveaux documents.
           </p>
         </div>
@@ -58,7 +58,7 @@ export function ResourceGrid({ resources, total, page, pageSize = 12 }: Resource
             href={`?page=${page - 1}`}
             aria-disabled={page <= 1}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 border border-[#bdc9c7] rounded-lg text-[14px] text-[#3e4948] hover:bg-[#ebefed] transition-colors",
+              "flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-[14px] text-on-surface-variant hover:bg-surface-container transition-colors",
               page <= 1 && "pointer-events-none opacity-50"
             )}
           >
@@ -78,7 +78,7 @@ export function ResourceGrid({ resources, total, page, pageSize = 12 }: Resource
                   "w-10 h-10 flex items-center justify-center rounded-lg text-[14px] font-semibold transition-colors",
                   p === page
                     ? "bg-teal-700 text-white"
-                    : "hover:bg-[#ebefed] text-[#3e4948]"
+                    : "hover:bg-surface-container text-on-surface-variant"
                 )}
               >
                 {p}
@@ -90,7 +90,7 @@ export function ResourceGrid({ resources, total, page, pageSize = 12 }: Resource
             href={`?page=${page + 1}`}
             aria-disabled={page >= totalPages}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 border border-[#bdc9c7] rounded-lg text-[14px] text-[#3e4948] hover:bg-[#ebefed] transition-colors",
+              "flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-[14px] text-on-surface-variant hover:bg-surface-container transition-colors",
               page >= totalPages && "pointer-events-none opacity-50"
             )}
           >

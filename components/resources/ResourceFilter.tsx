@@ -23,14 +23,14 @@ const MEDIA_TYPES = [
 function FilterSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true)
   return (
-    <div className="border-b border-[#bdc9c7] pb-4">
+    <div className="border-b border-outline-variant pb-4">
       <button
         type="button"
         className="w-full flex items-center justify-between py-2 text-left"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
-        <span className="text-[16px] font-semibold text-[#181d1c]">{title}</span>
+        <span className="text-[16px] font-semibold text-on-surface">{title}</span>
         <span
           className={cn(
             "material-symbols-outlined text-[#6e7978] transition-transform duration-200",
@@ -62,11 +62,11 @@ export function ResourceFilter({
               <label key={t.value} className="flex items-center gap-3 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="rounded border-[#bdc9c7] text-teal-700 focus:ring-teal-700"
+                  className="rounded border-outline-variant text-teal-700 focus:ring-teal-700"
                   checked={selectedTypes.includes(t.value)}
                   onChange={() => onTypeToggle(t.value)}
                 />
-                <span className="text-[14px] text-[#3e4948] group-hover:text-teal-700 transition-colors">
+                <span className="text-[14px] text-on-surface-variant group-hover:text-teal-700 transition-colors">
                   {t.label}
                 </span>
               </label>
@@ -88,7 +88,7 @@ export function ResourceFilter({
                       "text-left px-3 py-1.5 rounded text-[12px] font-medium flex items-center justify-between transition-colors",
                       selected
                         ? "bg-teal-100 text-teal-900"
-                        : "hover:bg-[#ebefed] text-[#3e4948]"
+                        : "hover:bg-surface-container text-on-surface-variant"
                     )}
                   >
                     {tag.name}

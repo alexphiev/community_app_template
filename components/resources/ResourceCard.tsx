@@ -39,7 +39,7 @@ export function ResourceCard({
     <article
       className={cn(
         "group bg-white border rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden",
-        isPinned ? "border-teal-700/20" : "border-[#bdc9c7]"
+        isPinned ? "border-teal-700/20" : "border-outline-variant"
       )}
     >
       {isPinned && (
@@ -61,13 +61,13 @@ export function ResourceCard({
         href={linkHref}
         className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 rounded"
       >
-        <h3 className="text-[24px] font-semibold leading-[1.35] text-[#181d1c] mb-2 group-hover:text-teal-700 transition-colors">
+        <h3 className="text-[24px] font-semibold leading-[1.35] text-on-surface mb-2 group-hover:text-teal-700 transition-colors">
           {resource.title}
         </h3>
       </Link>
 
       {resource.description && (
-        <p className="text-[14px] text-[#3e4948] leading-[1.5] line-clamp-2 mb-4">
+        <p className="text-[14px] text-on-surface-variant leading-[1.5] line-clamp-2 mb-4">
           {resource.description}
         </p>
       )}
@@ -80,7 +80,7 @@ export function ResourceCard({
         </div>
       )}
 
-      <div className="flex items-center justify-between pt-4 border-t border-[#bdc9c7]">
+      <div className="flex items-center justify-between pt-4 border-t border-outline-variant">
         <span className="text-[12px] text-[#6e7978] italic">
           {new Intl.DateTimeFormat("fr-FR", {
             day: "numeric",
@@ -88,17 +88,6 @@ export function ResourceCard({
             year: "numeric",
           }).format(new Date(resource.createdAt))}
         </span>
-        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Link
-            href={linkHref}
-            className="p-2 text-teal-700 hover:bg-teal-50 rounded-full transition-colors"
-            aria-label={`Ouvrir ${resource.title}`}
-          >
-            <span className="material-symbols-outlined text-[20px]" aria-hidden="true">
-              open_in_new
-            </span>
-          </Link>
-        </div>
       </div>
 
       {isPinned && (

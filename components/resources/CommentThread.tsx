@@ -33,23 +33,24 @@ function CommentItem({
 
   return (
     <div className="flex gap-3">
-      <div className="w-8 h-8 rounded-full bg-[#ebefed] flex items-center justify-center text-[12px] font-semibold text-teal-700 flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-[12px] font-semibold text-teal-700 flex-shrink-0">
         {comment.author.name.slice(0, 2).toUpperCase()}
       </div>
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-[14px] font-semibold text-[#181d1c]">{comment.author.name}</span>
+          <span className="text-[14px] font-semibold text-on-surface">{comment.author.name}</span>
           <span className="text-[11px] text-[#6e7978]">
             {new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" }).format(
               new Date(comment.createdAt)
             )}
           </span>
         </div>
-        <p className="text-[14px] text-[#3e4948] leading-[1.5]">{comment.body}</p>
+        <p className="text-[14px] text-on-surface-variant leading-[1.5]">{comment.body}</p>
         <button
           type="button"
           className="mt-1 text-[12px] text-teal-700 hover:underline"
           onClick={() => setReplying((r) => !r)}
+          aria-label={`Répondre à ${comment.author.name}`}
         >
           Répondre
         </button>
@@ -59,7 +60,7 @@ function CommentItem({
             <textarea
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
-              className="flex-1 rounded-lg border border-[#bdc9c7] p-2 text-[14px] resize-none min-h-[60px] focus:border-teal-700 focus:ring-1 focus:ring-teal-700"
+              className="flex-1 rounded-lg border border-outline-variant p-2 text-[14px] resize-none min-h-[60px] focus:border-teal-700 focus:ring-1 focus:ring-teal-700"
               placeholder="Votre réponse..."
               aria-label="Répondre"
             />
@@ -73,7 +74,7 @@ function CommentItem({
         )}
 
         {replies.length > 0 && (
-          <div className="mt-3 pl-4 border-l-2 border-[#bdc9c7] space-y-3">
+          <div className="mt-3 pl-4 border-l-2 border-outline-variant space-y-3">
             {replies.map((reply) => (
               <CommentItem key={reply.id} comment={reply} resourceId={resourceId} replies={[]} />
             ))}
@@ -111,7 +112,7 @@ export function CommentThread({
   return (
     <section aria-label="Commentaires et questions">
       <h2
-        className="text-[24px] font-semibold text-[#181d1c] mb-6"
+        className="text-[24px] font-semibold text-on-surface mb-6"
         style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
       >
         Questions & Réponses ({topLevel.length})
@@ -121,7 +122,7 @@ export function CommentThread({
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          className="flex-1 rounded-lg border border-[#bdc9c7] p-3 text-[14px] resize-none min-h-[80px] focus:border-teal-700 focus:ring-1 focus:ring-teal-700"
+          className="flex-1 rounded-lg border border-outline-variant p-3 text-[14px] resize-none min-h-[80px] focus:border-teal-700 focus:ring-1 focus:ring-teal-700"
           placeholder="Posez votre question ou partagez un commentaire..."
           aria-label="Nouveau commentaire"
         />
