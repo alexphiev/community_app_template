@@ -52,6 +52,9 @@ export async function updatePost(input: UpdatePostInput) {
   if (!isOwner && !canModerate(session.user.role)) throw new Error("Permission refusée")
 
   const { id, ...data } = parsed
+  if (data.pinned && !canModerate(session.user.role)) {
+    data.pinned = false
+  }
   await db.update(posts).set({ ...data, updatedAt: new Date() }).where(eq(posts.id, id))
   revalidateTag("posts", {})
 }
@@ -137,7 +140,8 @@ export async function updateEvent(input: UpdateEventInput) {
 
   const parsed = updateEventSchema.parse(input)
   const { id, ...data } = parsed
-  await db.update(events).set({ ...data, updatedAt: new Date() }).where(eq(events.id, id!))
+  if (!id) throw new Error("ID de l'événement requis")
+  await db.update(events).set({ ...data, updatedAt: new Date() }).where(eq(events.id, id))
   revalidateTag("events", {})
   revalidateTag(`event-${id}`, {})
 }
