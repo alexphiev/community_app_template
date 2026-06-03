@@ -1,4 +1,5 @@
 import { pgTable, text, timestamp, boolean, integer, pgEnum, primaryKey, index, type AnyPgColumn } from "drizzle-orm/pg-core"
+import { relations } from "drizzle-orm"
 import { createId } from "@paralleldrive/cuid2"
 import { ROLES } from "@/lib/roles"
 
@@ -144,3 +145,36 @@ export const shareLinks = pgTable("share_links", {
   createdById: text("created_by_id").notNull().references(() => users.id),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 })
+
+export const resourcesRelations = relations(resources, ({ one, many }) => ({
+  author: one(users, { fields: [resources.authorId], references: [users.id] }),
+  approvedBy: one(users, { fields: [resources.approvedById], references: [users.id] }),
+  files: many(resourceFiles),
+  tags: many(resourceTags),
+  comments: many(comments),
+}))
+
+export const resourceTagsRelations = relations(resourceTags, ({ one }) => ({
+  resource: one(resources, { fields: [resourceTags.resourceId], references: [resources.id] }),
+  tag: one(tags, { fields: [resourceTags.tagId], references: [tags.id] }),
+}))
+
+export const tagsRelations = relations(tags, ({ many }) => ({
+  resources: many(resourceTags),
+}))
+
+export const commentsRelations = relations(comments, ({ one, many }) => ({
+  resource: one(resources, { fields: [comments.resourceId], references: [resources.id] }),
+  author: one(users, { fields: [comments.authorId], references: [users.id] }),
+  parent: one(comments, { fields: [comments.parentId], references: [comments.id] }),
+  replies: many(comments),
+}))
+
+export const shareLinksRelations = relations(shareLinks, ({ one }) => ({
+  resource: one(resources, { fields: [shareLinks.resourceId], references: [resources.id] }),
+  createdBy: one(users, { fields: [shareLinks.createdById], references: [users.id] }),
+}))
+
+export const resourceFilesRelations = relations(resourceFiles, ({ one }) => ({
+  resource: one(resources, { fields: [resourceFiles.resourceId], references: [resources.id] }),
+}))
