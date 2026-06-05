@@ -33,7 +33,7 @@ export function MessageComposer({ channelId, placeholder }: { channelId: string;
       <form onSubmit={handleSubmit}>
         <div className="border border-outline-variant rounded-xl shadow-sm focus-within:border-teal-600 transition-all overflow-hidden">
           {/* Formatting toolbar */}
-          <div className="flex items-center gap-1 p-2 bg-white border-b border-outline-variant/50">
+          <div className="flex items-center gap-1 p-2 bg-surface-container-lowest border-b border-outline-variant/50">
             {[
               { icon: "format_bold", label: "Gras" },
               { icon: "format_italic", label: "Italique" },
@@ -75,7 +75,7 @@ export function MessageComposer({ channelId, placeholder }: { channelId: string;
             rows={3}
           />
 
-          <div className="flex justify-between items-center px-4 py-3 bg-white border-t border-outline-variant/50">
+          <div className="flex justify-between items-center px-4 py-3 bg-surface-container-lowest border-t border-outline-variant/50">
             <div className="flex items-center gap-1">
               {["add_circle", "mood", "alternate_email"].map((icon) => (
                 <button

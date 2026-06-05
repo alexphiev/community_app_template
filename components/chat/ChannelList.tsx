@@ -37,7 +37,7 @@ export function ChannelList({ channels, activeChannelId }: ChannelListProps) {
     <div className="w-72 bg-surface-container-low border-r border-outline-variant flex flex-col h-full">
       <div className="p-4 border-b border-outline-variant flex justify-between items-center flex-shrink-0">
         <h2
-          className="text-[18px] font-semibold text-teal-900"
+          className="text-[18px] font-bold text-teal-900"
           style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
         >
           Conversations
