@@ -13,7 +13,7 @@ vi.mock("next-auth", () => ({
   })),
 }))
 
-import { getRouteRole } from "@/middleware"
+import { getRouteRole } from "@/proxy"
 
 describe("getRouteRole", () => {
   it("admin routes require admin role", () => {

@@ -1,9 +1,14 @@
-import { auth } from "@/auth"
+import NextAuth from "next-auth"
 import { NextResponse } from "next/server"
+import { authConfig } from "./auth.config"
 import { ROLES, hasPermission } from "@/lib/roles"
 import type { Role } from "@/lib/roles"
 
-type RouteRequirement = "admin" | "chat" | "resources" | "news" | "agenda" | "directory" | "authenticated" | null
+const { auth } = NextAuth(authConfig)
+
+type RouteRequirement =
+  | "admin" | "chat" | "resources" | "news"
+  | "agenda" | "directory" | "authenticated" | null
 
 export function getRouteRole(pathname: string): RouteRequirement {
   if (pathname.startsWith("/share")) return null
@@ -31,7 +36,9 @@ export default auth((req) => {
   if (requirement === "authenticated") return NextResponse.next()
 
   const rawRole = session.user.role
-  const role = (Object.values(ROLES) as string[]).includes(rawRole) ? (rawRole as Role) : null
+  const role = (Object.values(ROLES) as string[]).includes(rawRole)
+    ? (rawRole as Role)
+    : null
   if (!role || !hasPermission(role, requirement)) {
     return NextResponse.redirect(new URL("/dashboard", req.url))
   }
@@ -39,6 +46,6 @@ export default auth((req) => {
   return NextResponse.next()
 })
 
-export const config = {
+export const proxyConfig = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }
