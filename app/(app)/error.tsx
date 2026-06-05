@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 export default function AppError({
   error,
   reset,
@@ -27,6 +29,9 @@ export default function AppError({
       >
         Réessayer
       </button>
+      <Link href="/dashboard" className="text-[13px] text-teal-700 hover:underline">
+        Retour au tableau de bord
+      </Link>
     </div>
   )
 }
