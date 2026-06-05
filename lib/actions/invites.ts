@@ -23,7 +23,7 @@ export async function inviteUser(formData: FormData) {
     role: formData.get("role"),
   })
   if (!parsed.success) {
-    return { error: parsed.error.issues[0].message }
+    throw new Error(parsed.error.issues[0].message)
   }
 
   const { email, name, role } = parsed.data
@@ -33,7 +33,7 @@ export async function inviteUser(formData: FormData) {
     columns: { id: true },
   })
   if (existingUser) {
-    return { error: "Un compte avec cet email existe déjà." }
+    throw new Error("Un compte avec cet email existe déjà.")
   }
 
   const existingInvite = await db.query.inviteTokens.findFirst({
@@ -45,7 +45,7 @@ export async function inviteUser(formData: FormData) {
     columns: { token: true },
   })
   if (existingInvite) {
-    return { error: "Une invitation est déjà en attente pour cet email." }
+    throw new Error("Une invitation est déjà en attente pour cet email.")
   }
 
   const token = createId()
@@ -64,7 +64,6 @@ export async function inviteUser(formData: FormData) {
   await sendInviteEmail({ to: email, name, inviteUrl: `${baseUrl}/register?token=${token}` })
 
   revalidatePath("/admin/users")
-  return { success: true }
 }
 
 export async function getInviteByToken(token: string) {
