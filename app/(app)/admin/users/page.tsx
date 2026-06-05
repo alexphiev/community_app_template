@@ -41,7 +41,7 @@ export default async function AdminUsersPage() {
               type="email"
               required
               placeholder="prenom.nom@structure.fr"
-              className="h-9 rounded-[6px] border border-[#d2d8d8] bg-white px-3 text-[14px] text-[#181d1c] placeholder:text-[#6e7978] focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors min-w-[220px]"
+              className="h-9 rounded-[6px] border border-outline-variant bg-white px-3 text-[14px] text-on-surface placeholder:text-outline focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors min-w-[220px]"
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -51,7 +51,7 @@ export default async function AdminUsersPage() {
               name="name"
               type="text"
               placeholder="Prénom Nom"
-              className="h-9 rounded-[6px] border border-[#d2d8d8] bg-white px-3 text-[14px] text-[#181d1c] placeholder:text-[#6e7978] focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors min-w-[160px]"
+              className="h-9 rounded-[6px] border border-outline-variant bg-white px-3 text-[14px] text-on-surface placeholder:text-outline focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors min-w-[160px]"
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -61,7 +61,7 @@ export default async function AdminUsersPage() {
               name="role"
               required
               defaultValue={ROLES.PRO_RESEAU}
-              className="h-9 rounded-[6px] border border-[#d2d8d8] bg-white px-3 text-[14px] text-[#181d1c] focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors"
+              className="h-9 rounded-[6px] border border-outline-variant bg-white px-3 text-[14px] text-on-surface focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 transition-colors"
             >
               {INVITABLE_ROLES.map((r) => (
                 <option key={r.value} value={r.value}>{r.label}</option>
