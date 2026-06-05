@@ -26,7 +26,7 @@ export function PostCard({ post }: { post: PostCardPost }) {
   return (
     <article
       className={cn(
-        "bg-white rounded-lg border shadow-sm",
+        "bg-surface rounded-lg border shadow-sm",
         post.pinned ? "border-coral-700/20" : "border-outline-variant"
       )}
     >
@@ -44,11 +44,11 @@ export function PostCard({ post }: { post: PostCardPost }) {
                     À la une
                   </span>
                 )}
-                <span className="text-[11px] text-on-surface-variant uppercase tracking-wider">
+                <span className="font-label-2xs text-on-surface-variant uppercase tracking-wider">
                   {ROLE_LABELS[post.author.role ?? ""] ?? post.author.role}
                 </span>
                 <span className="text-outline text-xs">•</span>
-                <span className="text-[11px] text-outline">
+                <span className="font-label-2xs text-outline italic">
                   {new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium", timeStyle: "short" }).format(
                     new Date(post.createdAt)
                   )}
@@ -61,7 +61,7 @@ export function PostCard({ post }: { post: PostCardPost }) {
         <p className="text-[16px] text-on-surface leading-relaxed whitespace-pre-wrap">{post.body}</p>
       </div>
 
-      <div className="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex justify-between rounded-b-lg">
+      <div className="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex justify-between rounded-b-lg">
         <div className="flex gap-6">
           <button
             className="flex items-center gap-2 text-on-surface-variant hover:text-coral-700 transition-colors font-medium text-sm"

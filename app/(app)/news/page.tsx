@@ -21,7 +21,7 @@ export default async function NewsPage() {
       </div>
 
       {/* Composer */}
-      <div className="bg-white p-6 rounded-lg border border-outline-variant shadow-sm">
+      <div className="bg-surface p-6 rounded-lg border border-outline-variant shadow-sm">
         <form
           action={async (fd: FormData) => {
             "use server"
