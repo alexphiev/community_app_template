@@ -29,7 +29,7 @@ function FilterSection({ title, children }: { title: string; children: React.Rea
         <span className="text-[16px] font-semibold text-on-surface">{title}</span>
         <span
           className={cn(
-            "material-symbols-outlined text-[#6e7978] transition-transform duration-200",
+            "material-symbols-outlined text-outline transition-transform duration-200",
             !open && "rotate-180"
           )}
           aria-hidden="true"

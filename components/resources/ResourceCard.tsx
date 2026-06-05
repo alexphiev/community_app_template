@@ -81,7 +81,7 @@ export function ResourceCard({
       )}
 
       <div className="flex items-center justify-between pt-4 border-t border-outline-variant">
-        <span className="text-[12px] text-[#6e7978] italic">
+        <span className="text-[12px] text-outline italic">
           {new Intl.DateTimeFormat("fr-FR", {
             day: "numeric",
             month: "short",
