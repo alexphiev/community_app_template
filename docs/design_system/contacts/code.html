@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hub Pro - Annuaire</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2c3131",
+                    "tertiary-fixed": "#ffdbcd",
+                    "neutral-900": "#1A2020",
+                    "surface-variant": "#dfe3e2",
+                    "on-secondary-container": "#731b0b",
+                    "surface-bright": "#f6faf9",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#006a65",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#a33d2a",
+                    "tertiary": "#8b4627",
+                    "surface-container-high": "#e5e9e7",
+                    "surface-container-highest": "#dfe3e2",
+                    "on-secondary-fixed": "#3e0400",
+                    "on-tertiary-fixed-variant": "#743417",
+                    "surface": "#f6faf9",
+                    "tertiary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#832615",
+                    "on-surface-variant": "#3e4948",
+                    "surface-container-low": "#f0f4f3",
+                    "on-primary-fixed-variant": "#00504c",
+                    "primary-fixed-dim": "#76d6cf",
+                    "on-tertiary-container": "#fff6f4",
+                    "teal-900": "#00403D",
+                    "surface-container": "#ebefed",
+                    "inverse-on-surface": "#edf2f0",
+                    "on-surface": "#181d1c",
+                    "neutral-50": "#F4F7F7",
+                    "inverse-primary": "#76d6cf",
+                    "teal-700": "#00807A",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#00201e",
+                    "secondary-fixed-dim": "#ffb4a5",
+                    "tertiary-container": "#a95e3d",
+                    "surface-dim": "#d7dbd9",
+                    "coral-700": "#BB4F3A",
+                    "secondary-fixed": "#ffdad3",
+                    "on-error": "#ffffff",
+                    "outline": "#6e7978",
+                    "on-background": "#181d1c",
+                    "teal-50": "#F0F9F9",
+                    "primary": "#006560",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#e0fffb",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#93f3eb",
+                    "primary-container": "#00807a",
+                    "outline-variant": "#bdc9c7",
+                    "background": "#f6faf9",
+                    "secondary-container": "#fe8269",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "gutter-desktop": "24px",
+                    "target-mobile": "48px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "gutter-mobile": "16px",
+                    "target-touch": "44px"
+            },
+            "fontFamily": {
+                    "headline-h1": ["Bricolage Grotesque"],
+                    "body-base": ["Inter"],
+                    "hero-title": ["Bricolage Grotesque"],
+                    "headline-h2": ["Bricolage Grotesque"],
+                    "body-sm": ["Inter"],
+                    "label-xs": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-2xs": ["Inter"],
+                    "headline-h3": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                    "headline-h1": ["39px", {"lineHeight": "1.15", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "hero-title": ["49px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-h2": ["31px", {"lineHeight": "1.25", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-xs": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                    "label-2xs": ["11px", {"lineHeight": "1.45", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-h3": ["24px", {"lineHeight": "1.35", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .coral-accent {
+            position: relative;
+        }
+        .coral-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 24px;
+            background-color: #BB4F3A;
+            border-radius: 0 4px 4px 0;
+        }
+        .profile-card:hover .coral-accent::before {
+            height: 48px;
+            transition: height 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface shadow-sm flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-h3 text-headline-h3 font-bold text-teal-700">Hub Pro</h1>
+<p class="text-label-xs text-on-surface-variant tracking-wider">Info Jeunes</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">dashboard</span>
+<span class="font-body-base">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">feed</span>
+<span class="font-body-base">Actualités</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">home_repair_service</span>
+<span class="font-body-base">Boîte à Outils</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">calendar_month</span>
+<span class="font-body-base">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">chat</span>
+<span class="font-body-base">Messagerie</span>
+</a>
+<!-- Active State for Network Directory (Annuaire) -->
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 border-l-[3px] border-coral-700 bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_phone</span>
+<span class="font-body-base font-semibold">Annuaire</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-6 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors group mb-4" href="#">
+<span class="material-symbols-outlined group-hover:text-teal-700">settings</span>
+<span class="font-body-base">Paramètres</span>
+</a>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-teal-50 text-teal-700 font-semibold rounded-lg hover:bg-teal-100 transition-all border border-teal-200">
+<span class="material-symbols-outlined text-sm">help</span>
+                Aide &amp; Support
+            </button>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-gutter-desktop ml-64 w-[calc(100%-16rem)] z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:outline-none focus:border-teal-600 transition-colors" placeholder="Rechercher un professionnel..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-coral-700 rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-body-sm font-semibold text-on-surface">Marie Durand</p>
+<p class="text-label-2xs text-on-surface-variant">Info Jeunes Occitanie</p>
+</div>
+<img alt="Profile" class="h-10 w-10 rounded-full object-cover border-2 border-teal-700/10" data-alt="A professional headshot of a middle-aged woman with a friendly expression, wearing a stylish blazer, set against a bright, minimalist studio background with soft lighting. The image conveys a clean, professional corporate aesthetic with high-key lighting and a sense of approachability and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApGs9gxA89SP3MWjVmOvAI4TbFCfeLdUmx8ftoN6lG2CoIR6aaob3kO8YZs9aAWlkGt9aD__y9AYOAvQPs-69AYC5QD0Sfp6RyNfZCPO1HomN7gl2ZHzM78ww1Ewu4aP_h4XR73UqwWHXt0AasDQcHRO1qLktybDQj9KObLPyIla2fubtbMracaYBBF57HbqnyX57pU3KJ7GbsWU3W6YOsLnfB2qMf4IPTZ7crozqSsDAyGG5MdW8hv_RY1nQzH9hY8YRxbeHlFb4N"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-gutter-desktop pb-12 max-w-[1440px]">
+<!-- Page Header & Filters -->
+<div class="mb-10 space-y-6">
+<div>
+<h2 class="font-headline-h2 text-headline-h2 text-on-surface">Annuaire du Réseau</h2>
+<p class="text-body-lg text-on-surface-variant mt-1">Trouvez et connectez-vous avec les professionnels du réseau Info Jeunes.</p>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col md:flex-row gap-4 items-end">
+<div class="flex-1 w-full">
+<label class="block text-label-xs font-semibold text-teal-700 mb-2 uppercase tracking-wider">Recherche libre</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">person_search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg text-body-base focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all" placeholder="Nom, prénom, mots-clés..." type="text"/>
+</div>
+</div>
+<div class="w-full md:w-56">
+<label class="block text-label-xs font-semibold text-teal-700 mb-2 uppercase tracking-wider">Département</label>
+<select class="w-full py-3 px-4 bg-white border border-outline-variant rounded-lg text-body-base appearance-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all cursor-pointer">
+<option>Tous les départements</option>
+<option>31 - Haute-Garonne</option>
+<option>34 - Hérault</option>
+<option>75 - Paris</option>
+<option>69 - Rhône</option>
+</select>
+</div>
+<div class="w-full md:w-56">
+<label class="block text-label-xs font-semibold text-teal-700 mb-2 uppercase tracking-wider">Structure</label>
+<select class="w-full py-3 px-4 bg-white border border-outline-variant rounded-lg text-body-base appearance-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all cursor-pointer">
+<option>Toutes les structures</option>
+<option>CRIJ</option>
+<option>BIJ</option>
+<option>PIJ</option>
+</select>
+</div>
+<div class="w-full md:w-56">
+<label class="block text-label-xs font-semibold text-teal-700 mb-2 uppercase tracking-wider">Fonction</label>
+<select class="w-full py-3 px-4 bg-white border border-outline-variant rounded-lg text-body-base appearance-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all cursor-pointer">
+<option>Toutes les fonctions</option>
+<option>Informateur Jeunesse</option>
+<option>Coordinateur</option>
+<option>Directeur</option>
+<option>Communication</option>
+</select>
+</div>
+<button class="h-[52px] px-6 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+                    Filtrer
+                </button>
+</div>
+</div>
+<!-- Directory Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Profile Card 1 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div> <!-- Marker hidden, logic in ::before -->
+<div class="relative mb-4">
+<img alt="Julien Morel" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A professional close-up of a smiling man in his 30s with a neat beard, wearing a casual navy blue shirt. He is standing in a brightly lit modern office environment with blurred glass partitions and green plants in the background. The lighting is clean, bright, and natural, maintaining a high-end corporate lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYeqwRPBRRBJZJNRkNXAEHQdOITp-60MB63oWBlZWnKS77ho-zoVTtqhFDoqoRsUPXfckBdw_fYEIswpZdzFYyuejrhp5-KIkw_bMHtnZMJyiTcLCAiZc86bD7efMWCiDNFJZGZFSGYVwmLV6E1_R7PFHicd8uT1iTzwImk1UWi5_zMf6V1P_HHBX1WLHKZz_-prLTqHH12H3STxhD0u-bpgFtQ6bCDEdLiBH-ZV5wKkc_Xxni17VGE3kuiE6OivngQpU9tKRR7StM"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="En ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Julien Morel</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">CRIJ Occitanie</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-teal-100">Coordinateur Réseau</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 2 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Sophie Bernard" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A waist-up portrait of a professional woman in her late 20s with short dark hair, wearing a white blouse and minimal jewelry. She is standing against a light grey, clean textured wall. The atmosphere is professional, calm, and bright, featuring soft directional lighting that highlights her friendly yet focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACbTAjPdJQvLZJbfm2sUgf4ZYFvLBxIYZUEJxZHUC-QB8fB2bMUTZMzhCoPtMGwENtcUCXd0hc_bBHy98kA0gJN76p4qxk6p7p_JK7_EnyyFx7pnkgpiU8lgAjOcgJj_zNuHSod2u16FiXYoOjANpEDhxpcLL--_Ilksq8g-POZSTGr6q07mw7-Nw1Y713ECxWDo_4mKucvEDgTiFDqLMqBjFdyGyvMNgNOT5hr_OKfyk4coWBcVSMta5x5_4F7--JuyRdEHjqFfrp"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-neutral-300 border-4 border-surface rounded-full" title="Absent"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Sophie Bernard</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">BIJ Toulouse</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-coral-50 text-coral-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-coral-100">Informateur Jeunesse</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 3 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Marc Lefebvre" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A portrait of a senior male professional in a sharp charcoal suit and light blue shirt. He has grey hair and a confident, kind smile. The background is a blurred high-end office lobby with architectural lines and warm, indirect lighting. The overall feel is one of authority, experience, and trust in a corporate modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrrzG-AQ-hGXCgpL5lDtSxYS0ZA6akm0NtBKxxp7518LaC79uqiyW5vUnBRRYtbeF2r0Nsfl8Zisr4bmxznxuL-659qFBwm659Y59mJLrc2jrXdsy1S0C_45M4rVR22jhBjn5gYZkBHWgfMZqM36ZbYAa17UsT27Ga983hNj-n0Sk7Bf_dZoeDbQgJ3y5lGVbIYd4HCnMTVcrRgMJZ9XClgUAFQfHCOSW8foPQsIHt6fugihC9JrigiIuyzJmx5ytk7-5kPIyv1s_5"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="En ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Marc Lefebvre</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">Direction Info Jeunes</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-teal-100">Directeur Général</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 4 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Amélie Roux" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A bright portrait of a young woman with a joyful expression, wearing a colorful scarf and a denim jacket. She has large glasses and an artistic look. The background is a creative workspace with colorful bulletin boards and warm sunlight coming through a large window. The vibe is creative, energetic, and highly professional in a modern agency-style setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Qz3kldTHSnN0Rrp_dtAv03JhmI4LoTqIOUjh100pleBKsiA20nW6z6N0DrYiDmprQdZV2xpJajpwQEAE2Fuera6EHLSqxE_71crbtZMhH6xxnDovsSdk6tXyVPLB1DcQfYriLzs_TZFtZT8kOZCoT27u7iN-lVNxK1DX1eJcT1G_U17MPJcpaoq6lG78HbzwQMQQajeS7iaMrkGXgrcQbJo2v74xW-5BYJXqcg0XJAkRTZeimXB2f7y8ItMxd_c8Qy15q_g8zIod"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-orange-400 border-4 border-surface rounded-full" title="Occupé"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Amélie Roux</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">PIJ Montpellier</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-coral-50 text-coral-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-coral-100">Chargée de Comm.</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 5 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Thomas Vidal" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A minimalist portrait of a man in his late 20s with a clean-shaven face and short athletic hair, wearing a white t-shirt and a light grey hoodie. He is standing in a high-key, brightly lit room with white walls and soft shadows. The lighting is even and soft, emphasizing a clean, fresh, and modern professional identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfzbBv9uE1c3qllYHx6TlCHQ9DvAzMRMWwKXsdWxMtnL2szqBRWUpEaffNZLtZj_D3LUuw4Kadg3GDr_12_8qlzdhxCKJtbyrBsENIQ1XeWhow1q0CypODndXZ3aKLY1TvTnpttJuNbrTzjavklqdA2uzFBxttPjEj8LUUfY7A5QbJbN608y0P8TqzYRmkeX9PT1LW1OFQ32POt8jLETF3a61xgbjUaGHl2Bz52N097sTFfFlO2CS2LP4aqiJFMoy2fDs0OibMmdUn"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="En ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Thomas Vidal</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">IJ National</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-teal-100">Webmaster</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 6 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Lucie Girard" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A professional portrait of a woman with red hair and freckles, wearing a dark green turtleneck sweater. She is looking directly into the camera with a calm, intelligent expression. The background is a soft-focus library with rows of books, suggesting a studious and reliable personality. The lighting is warm and intellectual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIDMEML6qMtP224NYUwFCQqGyMwrsBuu4ZrllJLf9jYGUYweSQHxlpTZwh6K49nXQKaz1wOht2ZqpYbLKMHlz14WlDdBZDIN-mOxqNEApkKdU_Qp394_EdmALMBQHgroFnZ5DVQFeh0Aum-41vH3O75MQo1WL5IWFqTO0XgV3JNG9dtnmwiAlPqMtJnqj51OAfg4__1vP7TWHqo4CJqkrvdB9mNE32D9jGyZuujK4BT7cl1btk5Ed2odXANUnNYEdDUHlnwouyMlkm"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-neutral-300 border-4 border-surface rounded-full" title="Hors ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Lucie Girard</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">BIJ Lyon</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-coral-50 text-coral-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-coral-100">Documentaliste</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 7 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Karim Mansour" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A portrait of a dapper man of Middle Eastern descent, wearing a tailored light-grey blazer over a black polo shirt. He has a warm smile and is standing in a blurred courtyard with modern architecture and green trees. The scene is bathed in golden-hour sunlight, creating a warm, approachable, and highly professional visual mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXw4Nea7treCVGe2qPZeySgvt8bk4dDzTZ4U3q7dKKruQfgkNUC66Fb2cpOKhb2Bn-3vUeehYY_89fjeF57S3zy4e9zlSN07c68JZWNKsxeSfBHyJiqGdOERYDztxXxTsBlY2kR4vy09JOZY5Z3VNEvSsvxL8rNNqY6kdovNVjn5fhKsF3hsDddgejfRdz4yr1mxldTp3Z_fhYg0UKuk1cUleAR7PLJThpqN0iYadKyiVXKtPIQsgb8_Vg0ILDddtPOyo-KuJZ4rkd"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="En ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Karim Mansour</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">CRIJ Ile-de-France</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-teal-100">Coordinateur Europe</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+<!-- Profile Card 8 -->
+<div class="profile-card bg-surface border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col items-center text-center relative overflow-hidden">
+<div class="coral-accent w-full h-0"></div>
+<div class="relative mb-4">
+<img alt="Inès Petit" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300" data-alt="A professional headshot of a young woman with long dark hair, wearing a stylish navy blue dress. She is standing against a minimalist, off-white interior wall with high ceilings and natural light streaming in. The image has a clean, high-contrast, and modern look, emphasizing clarity and professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3N_8nTjplWgQo6n7Bb06n9CCZlkSU505nw-1smueK-D7yXHOVa7g1c9xUGERfAiCZo3s4AUQKVXbyKMpzi6xUrEuQyiVBAc4OkA7cx2G0QjiR2GkoludMg953-092RawwNb60TzNYnncJNhvqWA2lXTP8WR0l8n47hv-vQDVuFF2DuDtdqqJEW8Z9e7L2AjYwQyM-Hk8aUhUye_fSIC1dvg0XSpCo5FL8VXlcREhDZYlrLNq3iCm1LqHI85eVJ83iZjWysZWpDMPO"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="En ligne"></span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Inès Petit</h3>
+<p class="text-body-sm font-medium text-teal-700 mb-2">PIJ Nîmes</p>
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-coral-50 text-coral-700 text-label-2xs font-bold rounded-full uppercase tracking-widest border border-coral-100">Informateur Jeunesse</span>
+</div>
+<div class="mt-auto w-full space-y-3">
+<button class="w-full py-3 px-4 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Envoyer un message
+                    </button>
+<button class="w-full py-2 px-4 text-on-surface-variant font-medium text-body-sm hover:bg-surface-container rounded-lg transition-colors">
+                        Voir le profil
+                    </button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-between items-center bg-white border border-outline-variant rounded-lg p-4">
+<p class="text-body-sm text-on-surface-variant">Affichage de <span class="font-semibold text-on-surface">8</span> sur <span class="font-semibold text-on-surface">142</span> professionnels</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-4 py-2 bg-teal-700 text-white font-semibold rounded-lg">1</button>
+<button class="px-4 py-2 hover:bg-surface-container rounded-lg transition-colors">2</button>
+<button class="px-4 py-2 hover:bg-surface-container rounded-lg transition-colors">3</button>
+<span class="px-2 py-2 text-on-surface-variant">...</span>
+<button class="px-4 py-2 hover:bg-surface-container rounded-lg transition-colors">18</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        // Simple search interactivity
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.profile-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const structure = card.querySelector('p').textContent.toLowerCase();
+                if (name.includes(term) || structure.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

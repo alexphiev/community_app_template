@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2c3131",
+                        "tertiary-fixed": "#ffdbcd",
+                        "neutral-900": "#1A2020",
+                        "surface-variant": "#dfe3e2",
+                        "on-secondary-container": "#731b0b",
+                        "surface-bright": "#f6faf9",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#006a65",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#a33d2a",
+                        "tertiary": "#8b4627",
+                        "surface-container-high": "#e5e9e7",
+                        "surface-container-highest": "#dfe3e2",
+                        "on-secondary-fixed": "#3e0400",
+                        "on-tertiary-fixed-variant": "#743417",
+                        "surface": "#f6faf9",
+                        "tertiary-fixed-dim": "#ffb597",
+                        "on-secondary-fixed-variant": "#832615",
+                        "on-surface-variant": "#3e4948",
+                        "surface-container-low": "#f0f4f3",
+                        "on-primary-fixed-variant": "#00504c",
+                        "primary-fixed-dim": "#76d6cf",
+                        "on-tertiary-container": "#fff6f4",
+                        "teal-900": "#00403D",
+                        "surface-container": "#ebefed",
+                        "inverse-on-surface": "#edf2f0",
+                        "on-surface": "#181d1c",
+                        "neutral-50": "#F4F7F7",
+                        "inverse-primary": "#76d6cf",
+                        "teal-700": "#00807A",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#00201e",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "tertiary-container": "#a95e3d",
+                        "surface-dim": "#d7dbd9",
+                        "coral-700": "#BB4F3A",
+                        "secondary-fixed": "#ffdad3",
+                        "on-error": "#ffffff",
+                        "outline": "#6e7978",
+                        "on-background": "#181d1c",
+                        "teal-50": "#F0F9F9",
+                        "primary": "#006560",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-container": "#e0fffb",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#93f3eb",
+                        "primary-container": "#00807a",
+                        "outline-variant": "#bdc9c7",
+                        "background": "#f6faf9",
+                        "secondary-container": "#fe8269",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter-desktop": "24px",
+                        "target-mobile": "48px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "gutter-mobile": "16px",
+                        "target-touch": "44px"
+                    },
+                    "fontFamily": {
+                        "headline-h1": ["Bricolage Grotesque"],
+                        "body-base": ["Inter"],
+                        "hero-title": ["Bricolage Grotesque"],
+                        "headline-h2": ["Bricolage Grotesque"],
+                        "body-sm": ["Inter"],
+                        "label-xs": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-2xs": ["Inter"],
+                        "headline-h3": ["Bricolage Grotesque"]
+                    },
+                    "fontSize": {
+                        "headline-h1": ["39px", {"lineHeight": "1.15", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "hero-title": ["49px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-h2": ["31px", {"lineHeight": "1.25", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-xs": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                        "label-2xs": ["11px", {"lineHeight": "1.45", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-h3": ["24px", {"lineHeight": "1.35", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .coral-accent-line {
+            position: absolute;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background-color: #BB4F3A;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bdc9c7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-base text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface shadow-sm flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-h3 text-headline-h3 font-bold text-teal-700">Hub Pro</h1>
+<p class="font-label-xs text-label-xs text-on-surface-variant">Info Jeunes</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-base">Home</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="feed">feed</span>
+<span class="font-body-base">Actualités</span>
+</a>
+<a class="relative flex items-center gap-3 px-6 py-3 text-teal-700 bg-surface-container-low border-l-[3px] border-coral-700" href="#">
+<span class="material-symbols-outlined" data-icon="home_repair_service" style="font-variation-settings: 'FILL' 1;">home_repair_service</span>
+<span class="font-body-base font-semibold">Boîte à Outils</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-base">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-base">Messagerie</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_phone">contact_phone</span>
+<span class="font-body-base">Annuaire</span>
+</a>
+</nav>
+<div class="px-6 mt-auto pt-6 space-y-4">
+<button class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-teal-700 text-white rounded-lg hover:opacity-90 transition-all font-semibold shadow-sm">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+<span class="font-label-xs">Aide &amp; Support</span>
+</button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-base">Paramètres</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-16 ml-64 w-[calc(100%-16rem)] max-w-[1440px] bg-surface border-b border-outline-variant z-40 flex items-center justify-between px-gutter-desktop">
+<div class="flex-1 max-w-2xl flex items-center gap-4 bg-surface-container rounded-full px-4 py-1.5 focus-within:ring-2 ring-teal-700/20 transition-all">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-body-sm placeholder:text-outline" placeholder="Rechercher une ressource, un guide, un PDF..." type="text"/>
+<div class="h-4 w-px bg-outline-variant mx-2"></div>
+<select class="bg-transparent border-none focus:ring-0 text-body-sm font-semibold text-teal-700 cursor-pointer">
+<option>Trier par Récent</option>
+<option>Trier par Nom</option>
+<option>Les plus vus</option>
+</select>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-teal-700/10 flex items-center justify-center overflow-hidden border border-teal-700/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a diverse young professional, captured with clean studio lighting and a soft teal background gradient to match the corporate modern aesthetic of the Hub Pro platform. The subject is smiling warmly, conveying competence and accessibility. High-quality digital photography with a crisp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjERLXo2PQ_tgoMTgZPsboyv7Le4kCVy194bh8Z0ZTNm5C-I9RW5DyX7CbwQiTQNhcvPeOs01ZVzyoIm8mVUtOFLwf65HQd1NtAe_H92ko1v1W3IIE80CBO1twenN8fKVFgNHAMF2CgSe2ieYF6hToRl-pzDWRxzPuaa970HzxmBnPh2BHe1zRP0v4UdYyxzFi5fmf52_JdyJwosTsnLQtFgv7UEM27CifC4t_sYZrnq1aXHstAry4I-4RbQu-K2QHPJSq7ZLpNQH7"/>
+</div>
+</div>
+</header>
+<!-- Content Shell -->
+<div class="pt-24 px-gutter-desktop pb-10 flex gap-gutter-desktop">
+<!-- Left Sidebar Filters -->
+<aside class="w-72 flex-shrink-0 space-y-6">
+<div>
+<h2 class="font-headline-h3 text-headline-h3 text-teal-900 mb-2">Boîte à Outils</h2>
+<p class="text-body-sm text-outline">Gérez et accédez à vos ressources pédagogiques.</p>
+</div>
+<div class="space-y-4">
+<!-- Filter Section: Type de document -->
+<div class="border-b border-outline-variant pb-4">
+<button class="w-full flex items-center justify-between py-2 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<span class="font-body-base font-semibold text-on-surface">Type de document</span>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</button>
+<div class="mt-2 space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-teal-700 focus:ring-teal-700" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-teal-700 transition-colors">PDF (12)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-teal-700 focus:ring-teal-700" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-teal-700 transition-colors">Vidéos (8)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-teal-700 focus:ring-teal-700" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-teal-700 transition-colors">Liens Web (15)</span>
+</label>
+</div>
+</div>
+<!-- Filter Section: Thématique -->
+<div class="border-b border-outline-variant pb-4">
+<button class="w-full flex items-center justify-between py-2 text-left">
+<span class="font-body-base font-semibold text-on-surface">Thématique</span>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</button>
+<div class="mt-2 grid grid-cols-1 gap-2">
+<button class="text-left px-3 py-1.5 rounded bg-teal-100 text-teal-900 font-label-xs flex items-center justify-between">
+                                Emploi
+                                <span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+<button class="text-left px-3 py-1.5 rounded hover:bg-surface-container text-on-surface-variant font-label-xs">Logement</button>
+<button class="text-left px-3 py-1.5 rounded hover:bg-surface-container text-on-surface-variant font-label-xs">Santé &amp; Bien-être</button>
+<button class="text-left px-3 py-1.5 rounded hover:bg-surface-container text-on-surface-variant font-label-xs">Mobilité Internationale</button>
+</div>
+</div>
+<!-- Filter Section: Public Cible -->
+<div class="border-b border-outline-variant pb-4">
+<button class="w-full flex items-center justify-between py-2 text-left">
+<span class="font-body-base font-semibold text-on-surface">Public Cible</span>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</button>
+<div class="mt-2 space-y-2">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-teal-700 focus:ring-teal-700" name="public" type="radio"/>
+<span class="text-body-sm text-on-surface-variant">Tous les publics</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-teal-700 focus:ring-teal-700" name="public" type="radio"/>
+<span class="text-body-sm text-on-surface-variant">15-18 ans</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-teal-700 focus:ring-teal-700" name="public" type="radio"/>
+<span class="text-body-sm text-on-surface-variant">Étudiants</span>
+</label>
+</div>
+</div>
+</div>
+<div class="p-4 bg-teal-900 rounded-xl text-white relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-semibold text-body-base mb-1">Nouveau Document ?</h4>
+<p class="text-label-xs opacity-80 mb-4">Contribuez à la veille partagée du réseau.</p>
+<button class="bg-white text-teal-900 px-4 py-2 rounded-lg font-semibold text-label-xs shadow-sm hover:bg-teal-50 transition-colors">
+                            Télécharger
+                        </button>
+</div>
+<!-- Decorative Slant Element -->
+<div class="absolute -bottom-4 -right-4 w-20 h-20 bg-coral-700/20 transform rotate-[15deg] group-hover:scale-110 transition-transform"></div>
+</div>
+</aside>
+<!-- Right Main Area: Grid of Resource Cards -->
+<section class="flex-1">
+<div class="flex items-center justify-between mb-6">
+<p class="text-body-sm text-outline"><span class="font-bold text-on-surface">24</span> ressources trouvées</p>
+<div class="flex items-center gap-2">
+<button class="p-2 bg-white border border-outline-variant rounded hover:bg-teal-50 text-teal-700">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</button>
+<button class="p-2 bg-white border border-outline-variant rounded hover:bg-teal-50 text-outline">
+<span class="material-symbols-outlined" data-icon="list">list</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid / Card Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+<!-- Card 1 (PDF) -->
+<article class="group bg-white border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-red-50 text-error rounded-lg">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<span class="font-label-2xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant uppercase tracking-wider">Guide</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-2 group-hover:text-teal-700 transition-colors">Guide du Premier Logement 2024</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Un dossier complet sur les aides personnalisées au logement et les démarches administratives pour les 18-25 ans.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-100 text-teal-900 rounded-full font-label-2xs">Logement</span>
+<span class="px-2 py-0.5 bg-coral-100 text-coral-700 rounded-full font-label-2xs">Indispensable</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 12 Oct. 2023</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full" title="Télécharger">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full" title="Partager">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 (Video) -->
+<article class="group bg-white border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-teal-50 text-teal-700 rounded-lg">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+</div>
+<span class="font-label-2xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant uppercase tracking-wider">Webinaire</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-2 group-hover:text-teal-700 transition-colors">Stratégies de recherche d'emploi</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Replay de la session du 5 septembre sur les nouveaux outils de recrutement IA et réseaux sociaux.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-100 text-teal-900 rounded-full font-label-2xs">Emploi</span>
+<span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full font-label-2xs">Digital</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 06 Sept. 2023</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 (Link) -->
+<article class="group bg-white border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-fixed-dim/20 text-secondary rounded-lg">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+</div>
+<span class="font-label-2xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant uppercase tracking-wider">Externe</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-2 group-hover:text-teal-700 transition-colors">Portail des Droits Sociaux</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Lien direct vers la plateforme officielle pour simuler l'ensemble des aides de l'état.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-100 text-teal-900 rounded-full font-label-2xs">Droits</span>
+<span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full font-label-2xs">Outil Gouv</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 28 Août 2023</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4 (PDF) -->
+<article class="group bg-white border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-red-50 text-error rounded-lg">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<span class="font-label-2xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant uppercase tracking-wider">Infographie</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-2 group-hover:text-teal-700 transition-colors">Check-list Mobilité Erasmus</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Une page visuelle pour ne rien oublier avant de partir étudier à l'étranger.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-100 text-teal-900 rounded-full font-label-2xs">International</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 15 Août 2023</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5 (PDF - Highlighted with Slant) -->
+<article class="group bg-surface-container-lowest border border-teal-700/20 rounded-xl p-6 shadow-md hover:shadow-lg transition-all relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 bg-teal-700 text-white font-label-2xs rounded-bl-lg z-10">Mise en avant</div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-red-50 text-error rounded-lg">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-teal-700 mb-2">Rapport Annuel Info Jeunes 2023</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Données clés, impact social et perspectives stratégiques pour le réseau national.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-700 text-white rounded-full font-label-2xs">Rapport</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 01 Août 2023</span>
+<div class="flex gap-1">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+<!-- Kinetic slant decoration -->
+<div class="absolute -bottom-10 -right-6 w-32 h-6 bg-coral-700/5 rotate-[15deg]"></div>
+</article>
+<!-- Card 6 (Video) -->
+<article class="group bg-white border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-teal-50 text-teal-700 rounded-lg">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+</div>
+<span class="font-label-2xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant uppercase tracking-wider">Formation</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-2 group-hover:text-teal-700 transition-colors">Tutoriel : Utiliser l'Extranet Hub Pro</h3>
+<p class="text-body-sm text-on-surface-variant line-clamp-2 mb-4">Apprenez à maîtriser toutes les fonctionnalités de votre nouvel espace collaboratif.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-0.5 bg-teal-100 text-teal-900 rounded-full font-label-2xs">Interne</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-label-xs text-outline italic">Ajouté le 20 Juil. 2023</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</button>
+<button class="p-2 text-teal-700 hover:bg-teal-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex items-center justify-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-body-sm text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span>
+                        Précédent
+                    </button>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-teal-700 text-white font-semibold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors font-semibold">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors font-semibold">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors font-semibold">8</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-body-sm text-on-surface-variant hover:bg-surface-container transition-colors">
+                        Suivant
+                        <span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB - Only for Resources Main View -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-teal-700 text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all group z-50">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+<span class="absolute right-full mr-4 px-3 py-1.5 bg-neutral-900 text-white rounded-lg text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Ajouter une ressource
+        </span>
+</button>
+<script>
+        // Simple Interaction logic for accordion-like behavior and filtering simulation
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const cardGrid = document.querySelector('.grid');
+                cardGrid.style.opacity = '0.5';
+                setTimeout(() => {
+                    cardGrid.style.opacity = '1';
+                }, 300);
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput.parentElement;
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('shadow-md');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchContainer.classList.remove('shadow-md');
+        });
+    </script>
+</body></html>

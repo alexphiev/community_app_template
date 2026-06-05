@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hub Pro - Agenda &amp; Événements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .coral-accent-active {
+            position: relative;
+        }
+        .coral-accent-active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #BB4F3A; /* coral-700 */
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+        }
+        .drawer-transition {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#2c3131",
+                      "tertiary-fixed": "#ffdbcd",
+                      "neutral-900": "#1A2020",
+                      "surface-variant": "#dfe3e2",
+                      "on-secondary-container": "#731b0b",
+                      "surface-bright": "#f6faf9",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#006a65",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#a33d2a",
+                      "tertiary": "#8b4627",
+                      "surface-container-high": "#e5e9e7",
+                      "surface-container-highest": "#dfe3e2",
+                      "on-secondary-fixed": "#3e0400",
+                      "on-tertiary-fixed-variant": "#743417",
+                      "surface": "#f6faf9",
+                      "tertiary-fixed-dim": "#ffb597",
+                      "on-secondary-fixed-variant": "#832615",
+                      "on-surface-variant": "#3e4948",
+                      "surface-container-low": "#f0f4f3",
+                      "on-primary-fixed-variant": "#00504c",
+                      "primary-fixed-dim": "#76d6cf",
+                      "on-tertiary-container": "#fff6f4",
+                      "teal-900": "#00403D",
+                      "surface-container": "#ebefed",
+                      "inverse-on-surface": "#edf2f0",
+                      "on-surface": "#181d1c",
+                      "neutral-50": "#F4F7F7",
+                      "inverse-primary": "#76d6cf",
+                      "teal-700": "#00807A",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#00201e",
+                      "secondary-fixed-dim": "#ffb4a5",
+                      "tertiary-container": "#a95e3d",
+                      "surface-dim": "#d7dbd9",
+                      "coral-700": "#BB4F3A",
+                      "secondary-fixed": "#ffdad3",
+                      "on-error": "#ffffff",
+                      "outline": "#6e7978",
+                      "on-background": "#181d1c",
+                      "teal-50": "#F0F9F9",
+                      "primary": "#006560",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-primary-container": "#e0fffb",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#93f3eb",
+                      "primary-container": "#00807a",
+                      "outline-variant": "#bdc9c7",
+                      "background": "#f6faf9",
+                      "secondary-container": "#fe8269",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "gutter-desktop": "24px",
+                      "target-mobile": "48px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "gutter-mobile": "16px",
+                      "target-touch": "44px"
+              },
+              "fontFamily": {
+                      "headline-h1": ["Bricolage Grotesque"],
+                      "body-base": ["Inter"],
+                      "hero-title": ["Bricolage Grotesque"],
+                      "headline-h2": ["Bricolage Grotesque"],
+                      "body-sm": ["Inter"],
+                      "label-xs": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-2xs": ["Inter"],
+                      "headline-h3": ["Bricolage Grotesque"]
+              },
+              "fontSize": {
+                      "headline-h1": ["39px", {"lineHeight": "1.15", "fontWeight": "700"}],
+                      "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "hero-title": ["49px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "headline-h2": ["31px", {"lineHeight": "1.25", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-xs": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                      "label-2xs": ["11px", {"lineHeight": "1.45", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-h3": ["24px", {"lineHeight": "1.35", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-base">
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-neutral-900 shadow-sm flex flex-col py-6 z-40">
+<div class="px-6 mb-10">
+<h1 class="font-headline-h3 text-headline-h3 font-bold text-teal-700 dark:text-primary-fixed-dim">Hub Pro</h1>
+<p class="text-on-surface-variant font-label-xs">Info Jeunes</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-base">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="feed">feed</span>
+<span class="font-body-base">Actualités</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home_repair_service">home_repair_service</span>
+<span class="font-body-base">Boîte à Outils</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-primary-fixed-dim border-l-[3px] border-coral-700 bg-surface-container-low dark:bg-inverse-surface active:opacity-80 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-base">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-base">Messagerie</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_phone">contact_phone</span>
+<span class="font-body-base">Annuaire</span>
+</a>
+</nav>
+<div class="mt-auto px-4 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-base">Paramètres</span>
+</a>
+<button class="mt-4 w-full py-2.5 px-4 bg-teal-700 text-on-primary font-label-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                Aide &amp; Support
+            </button>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 h-16 bg-surface dark:bg-neutral-900 border-b border-outline-variant dark:border-outline flex justify-between items-center px-gutter-desktop ml-64 w-[calc(100%-16rem)] z-30">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-teal-700 font-body-sm" placeholder="Rechercher un événement, une formation..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container dark:hover:bg-inverse-surface rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="font-label-xs font-semibold text-on-surface">Jean Dupont</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Conseiller Pro</p>
+</div>
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-surface-container-highest group-hover:border-teal-700 transition-colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3XRjMxPbVdD9sNvKSHYGNccIAZYlz8kv1MyAw63eMQSsbiundwPaqCrzDnW3wNJNSS-aJ_FMKwn0m_dEzE6Kfv9qGLLPvhCXuP8fgyeGLQtbKJzsXq73Cfb3KFkd0b3m8TCXRechh-iSbmGJ-oO5m07LfaPjupnJ8yTuLHOK2qRsVdJRZ5NAqTTa1SSh4lG6QWfDlg8Olg8cweJ6bZ1nZ6xAuFYu2TaRlGXSkGSy-IAmZ3q5Tj7YzV9SIKdqqwF80iPanGZJGjEzf"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="p-margin-desktop max-w-[1440px] mx-auto">
+<!-- Calendar Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div>
+<h2 class="font-headline-h2 text-headline-h2 text-on-surface mb-1">Agenda Hub Pro</h2>
+<p class="text-on-surface-variant font-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="today">today</span>
+                        Octobre 2023
+                    </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container rounded-lg p-1 flex">
+<button class="px-4 py-1.5 rounded-md text-teal-700 font-label-xs font-semibold shadow-sm bg-white">Mois</button>
+<button class="px-4 py-1.5 rounded-md text-on-surface-variant font-label-xs hover:text-on-surface transition-colors">Semaine</button>
+<button class="px-4 py-1.5 rounded-md text-on-surface-variant font-label-xs hover:text-on-surface transition-colors">Liste</button>
+</div>
+<button class="bg-teal-700 text-on-primary px-6 py-2.5 rounded-lg font-label-xs font-bold hover:bg-primary transition-all flex items-center gap-2 shadow-md hover:shadow-lg" id="addEventBtn">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                        Nouvel événement
+                    </button>
+</div>
+</div>
+<!-- Calendar Container -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<!-- Day Labels -->
+<div class="calendar-grid border-b border-outline-variant bg-surface-container-low">
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Lun.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Mar.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Mer.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Jeu.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Ven.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center border-r border-outline-variant">Sam.</div>
+<div class="py-3 px-4 font-label-2xs text-on-surface-variant uppercase text-center">Dim.</div>
+</div>
+<!-- Days Grid -->
+<div class="calendar-grid">
+<!-- Week 1 (Partial) -->
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">25</div>
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">26</div>
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">27</div>
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">28</div>
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">29</div>
+<div class="border-r border-b border-outline-variant p-2 opacity-30 bg-neutral-50">30</div>
+<div class="border-b border-outline-variant p-2 font-semibold">1</div>
+<!-- Week 2 -->
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">2</span>
+<div class="cursor-pointer mb-1 p-1.5 rounded-md bg-blue-50 border-l-4 border-blue-500 hover:shadow-md transition-shadow" onclick="openDrawer('formation')">
+<p class="text-[11px] font-bold text-blue-900 leading-tight">Formation : RGPD</p>
+<span class="text-[10px] text-blue-700">09:00</span>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">3</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">4</span>
+<div class="cursor-pointer mb-1 p-1.5 rounded-md bg-green-50 border-l-4 border-green-500 hover:shadow-md transition-shadow" onclick="openDrawer('reunion')">
+<p class="text-[11px] font-bold text-green-900 leading-tight">Comité Hub Pro</p>
+<span class="text-[10px] text-green-700">14:30</span>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">5</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">6</span>
+<div class="cursor-pointer mb-1 p-1.5 rounded-md bg-purple-50 border-l-4 border-purple-500 hover:shadow-md transition-shadow" onclick="openDrawer('event')">
+<p class="text-[11px] font-bold text-purple-900 leading-tight">Soirée IJ Lab</p>
+<span class="text-[10px] text-purple-700">18:00</span>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">7</span>
+</div>
+<div class="border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">8</span>
+</div>
+<!-- Week 3 -->
+<div class="border-r border-b border-outline-variant p-2 bg-teal-50/20">
+<span class="font-bold mb-2 block text-teal-700">9</span>
+<div class="mb-1 p-1.5 rounded-md bg-blue-50 border-l-4 border-blue-500">
+<p class="text-[11px] font-bold text-blue-900 leading-tight">Formation CV</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">10</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">11</span>
+<div class="cursor-pointer mb-1 p-1.5 rounded-md bg-blue-50 border-l-4 border-blue-500 hover:shadow-md transition-shadow" onclick="openDrawer('formation')">
+<p class="text-[11px] font-bold text-blue-900 leading-tight">Formation Tutorat</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">12</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">13</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">14</span>
+</div>
+<div class="border-b border-outline-variant p-2">
+<span class="font-semibold mb-2 block">15</span>
+</div>
+<!-- Week 4 -->
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">16</span></div>
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">17</span></div>
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">18</span></div>
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">19</span></div>
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">20</span></div>
+<div class="border-r border-b border-outline-variant p-2"><span class="font-semibold">21</span></div>
+<div class="border-b border-outline-variant p-2"><span class="font-semibold">22</span></div>
+<!-- Remaining Cells -->
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">23</span></div>
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">24</span></div>
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">25</span></div>
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">26</span></div>
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">27</span></div>
+<div class="border-r border-outline-variant p-2"><span class="font-semibold">28</span></div>
+<div class="p-2"><span class="font-semibold">29</span></div>
+</div>
+</div>
+<!-- Legends -->
+<div class="mt-6 flex flex-wrap gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-blue-500"></span>
+<span class="font-label-xs text-on-surface-variant">Formation</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-green-500"></span>
+<span class="font-label-xs text-on-surface-variant">Réunion</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-purple-500"></span>
+<span class="font-label-xs text-on-surface-variant">Événement</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Drawer UI (Overlay) -->
+<div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" id="drawerBackdrop">
+<div class="absolute right-0 top-0 h-screen w-full max-w-md bg-white shadow-2xl drawer-transition translate-x-full overflow-y-auto" id="drawerContent">
+<div class="p-8">
+<!-- Header -->
+<div class="flex justify-between items-start mb-8">
+<div class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-blue-100 text-blue-700" id="eventBadge">Formation</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Event Details -->
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-6" id="eventTitle">Mise à jour RGPD pour conseillers</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="p-2.5 bg-surface-container rounded-lg text-teal-700">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+</div>
+<div>
+<p class="font-label-xs font-semibold text-on-surface">Date &amp; Heure</p>
+<p class="text-on-surface-variant font-body-sm" id="eventDate">Lundi 2 Octobre 2023 · 09:00 - 12:30</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2.5 bg-surface-container rounded-lg text-teal-700">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-label-xs font-semibold text-on-surface">Lieu</p>
+<p class="text-on-surface-variant font-body-sm" id="eventLocation">Salle Polyvalente - Info Jeunes Centre</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2.5 bg-surface-container rounded-lg text-teal-700">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div>
+<p class="font-label-xs font-semibold text-on-surface">Description</p>
+<p class="text-on-surface-variant font-body-sm leading-relaxed mt-1" id="eventDesc">
+                                Cette formation est obligatoire pour tous les nouveaux conseillers. Nous aborderons les bases de la protection des données et les procédures internes Hub Pro pour la gestion des dossiers usagers.
+                            </p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2.5 bg-surface-container rounded-lg text-teal-700">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div class="w-full">
+<p class="font-label-xs font-semibold text-on-surface mb-3">Participants (12)</p>
+<div class="flex -space-x-3">
+<img alt="Attendee 1" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbR3fOyS6c_6oB4X9N_xXMHoIiF-hrxnVtb1aFuRx1LjYLb5hInUyrjAZnch3NKoLR4141GfDZeRbVg22jH_mJUTxAAu4Ss9vA3f8b9DlzM6za7Oem_5DKLbFQcAq54ypm4Rr_EyqvlTmYHemBoj1qBNch2eL6K-UhG8Q1iOoh58By7363_CSfW2F5TBF6cTczT5Zo4uNC42IgeTFtadN6om2QrSzvnc4F0MooIiQcPISJupEx8zExExetYCUT_DyNTTnLmgWhVIM1"/>
+<img alt="Attendee 2" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFn5gIzxo8NXren0rO7jOJF5V39-F5Mk-lteJsKNl-1g2impcVOPENZRdajaVLFeU0K5wfZQssZ6h9JKauXejwURWp7855gb7RpVBRDGc3gz7FYJ4-ETsPMewr9yR5S7j7nv5_fGDx3x0UBZSP1EAYm8Us1zpmKOl8mg09CFTLutTRBQ0TIOm0o09oDSAWegW9misi7tadXbkuwi8-acf2xClE7-W1kHae-mygpehVhZmzIz1yVmkiPmEQiFV46A85egWDZ34UDmZx"/>
+<img alt="Attendee 3" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBanJr7NDE9YZDnR4aTw18q-fx3FBFb-hgsx1H9MNR0vpPRbiyoCYF_lf_-6cZgc0wUUs3PaLboAqWhIumAR273LBXrXwu0s_nSJqlh4NVT85ppH9vCjae5vZ34iWh0ddsabnkFr8r0Fp3SZ814pr6tXOpkENWSz7xQS8mHgesvb7pcCRnUfHInKvsnjgU5cheIPWEKr4ZbsE12JEXtV4bCAEw9ESgI_AHw6UspQ5GMmq71MsCkbkOLqSqveifKhseYwfebuOWcsQ93"/>
+<img alt="Attendee 4" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA15Yn08Eb6alc7CKza864KWrQWoh1XkJcytkWn_BR5KBiC5CmEMTNtS_e6CosYkU-2B2eDaeJy2Ys6-Jj4_zGitySfR3zLT-f4BHNDO5nMT_GRHXWmSExc3mxgHUsrZZ8ZcX6oOnwVbFKoU0GSJCr3A0hBeYq_MnbuA0rE-BXWJ0Yxf2LZ9BJIGpn-1qGH6S_IaHvaDvH4-FCI9MijC2yhHG6bx2FC-PXktT3jxPxha7x8fS5iPREjRQL1QGxAWNwnhvBbBh7ElGa7"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+8</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant">
+<button class="w-full py-4 bg-teal-700 text-on-primary font-body-base font-bold rounded-xl hover:bg-primary shadow-lg hover:shadow-xl transition-all active:scale-[0.98]">
+                        S'inscrire à l'événement
+                    </button>
+<button class="w-full mt-4 py-3 text-on-surface-variant font-label-xs hover:text-teal-700 transition-colors">
+                        Ajouter à mon calendrier (ICS)
+                    </button>
+</div>
+<div class="mt-8 rounded-xl overflow-hidden grayscale border border-outline-variant h-40">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist vector map illustration of a city district with teal and coral colored markers, representing professional buildings and hubs. The style is flat and institutional, fitting a modern SaaS dashboard interface with plenty of whitespace and soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6ttfDMrvRsjNA6kb4K_J3EHyOSp4_AVEkIdv_q0xACokcV389sa3B2_GQObX6kAI1oLVdtS0IGwMABrst72P_QCENMxiMmWkqo26meRgQSqXnRe-3Ju7azjRHpQuthxo-aXpZ6l_c1O9gr1-HNAM6sh3q6TUZoXyJ9lRcWR5-hUlbV4F13AWmG7AMgr2bgMgjEgvZqZvBnV697PRffF8khHkdbasSdFdw27_5gnuayqfTLa0CuGyrvSTDK1MplFcfznL_lWhOJ1Qq"/>
+</div>
+</div>
+</div>
+</div>
+<script>
+        const drawerBackdrop = document.getElementById('drawerBackdrop');
+        const drawerContent = document.getElementById('drawerContent');
+
+        function openDrawer(type) {
+            const badge = document.getElementById('eventBadge');
+            const title = document.getElementById('eventTitle');
+            const date = document.getElementById('eventDate');
+            const loc = document.getElementById('eventLocation');
+            const desc = document.getElementById('eventDesc');
+
+            if (type === 'formation') {
+                badge.innerText = 'Formation';
+                badge.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-blue-100 text-blue-700';
+                title.innerText = 'Mise à jour RGPD pour conseillers';
+                date.innerText = 'Lundi 2 Octobre 2023 · 09:00 - 12:30';
+                loc.innerText = 'Salle Polyvalente - Info Jeunes Centre';
+            } else if (type === 'reunion') {
+                badge.innerText = 'Réunion';
+                badge.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-green-100 text-green-700';
+                title.innerText = 'Comité de Pilotage Hub Pro Q4';
+                date.innerText = 'Mercredi 4 Octobre 2023 · 14:30 - 16:00';
+                loc.innerText = 'Visioconférence (Lien envoyé)';
+                desc.innerText = 'Revue annuelle des performances et planification des nouveaux outils pour le trimestre 4. Présence requise pour tous les directeurs de pôles.';
+            } else if (type === 'event') {
+                badge.innerText = 'Événement';
+                badge.className = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-purple-100 text-purple-700';
+                title.innerText = 'Networking & Soirée IJ Lab';
+                date.innerText = 'Vendredi 6 Octobre 2023 · 18:00 - 21:00';
+                loc.innerText = 'Terrasse de l\'Hôtel Région';
+                desc.innerText = 'Un moment convivial pour échanger avec les partenaires du réseau Info Jeunes et découvrir les projets innovants de l\'IJ Lab.';
+            }
+
+            drawerBackdrop.classList.remove('hidden');
+            setTimeout(() => {
+                drawerBackdrop.classList.add('opacity-100');
+                drawerContent.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeDrawer() {
+            drawerBackdrop.classList.remove('opacity-100');
+            drawerContent.classList.add('translate-x-full');
+            setTimeout(() => {
+                drawerBackdrop.classList.add('hidden');
+            }, 400);
+        }
+
+        drawerBackdrop.addEventListener('click', (e) => {
+            if (e.target === drawerBackdrop) closeDrawer();
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-teal-700/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-teal-700/20');
+        });
+    </script>
+</body></html>

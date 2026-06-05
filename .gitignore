@@ -43,3 +43,7 @@ next-env.d.ts
 # etl
 etl/data/
 etl/migration-report.json
+
+# AI
+/docs/superpowers/
+.claude/

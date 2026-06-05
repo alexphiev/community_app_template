@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hub Pro - Messagerie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2c3131",
+                        "tertiary-fixed": "#ffdbcd",
+                        "neutral-900": "#1A2020",
+                        "surface-variant": "#dfe3e2",
+                        "on-secondary-container": "#731b0b",
+                        "surface-bright": "#f6faf9",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#006a65",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#a33d2a",
+                        "tertiary": "#8b4627",
+                        "surface-container-high": "#e5e9e7",
+                        "surface-container-highest": "#dfe3e2",
+                        "on-secondary-fixed": "#3e0400",
+                        "on-tertiary-fixed-variant": "#743417",
+                        "surface": "#f6faf9",
+                        "tertiary-fixed-dim": "#ffb597",
+                        "on-secondary-fixed-variant": "#832615",
+                        "on-surface-variant": "#3e4948",
+                        "surface-container-low": "#f0f4f3",
+                        "on-primary-fixed-variant": "#00504c",
+                        "primary-fixed-dim": "#76d6cf",
+                        "on-tertiary-container": "#fff6f4",
+                        "teal-900": "#00403D",
+                        "surface-container": "#ebefed",
+                        "inverse-on-surface": "#edf2f0",
+                        "on-surface": "#181d1c",
+                        "neutral-50": "#F4F7F7",
+                        "inverse-primary": "#76d6cf",
+                        "teal-700": "#00807A",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#00201e",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "tertiary-container": "#a95e3d",
+                        "surface-dim": "#d7dbd9",
+                        "coral-700": "#BB4F3A",
+                        "secondary-fixed": "#ffdad3",
+                        "on-error": "#ffffff",
+                        "outline": "#6e7978",
+                        "on-background": "#181d1c",
+                        "teal-50": "#F0F9F9",
+                        "primary": "#006560",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-container": "#e0fffb",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#93f3eb",
+                        "primary-container": "#00807a",
+                        "outline-variant": "#bdc9c7",
+                        "background": "#f6faf9",
+                        "secondary-container": "#fe8269",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter-desktop": "24px",
+                        "target-mobile": "48px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "gutter-mobile": "16px",
+                        "target-touch": "44px"
+                    },
+                    "fontFamily": {
+                        "headline-h1": ["Bricolage Grotesque"],
+                        "body-base": ["Inter"],
+                        "hero-title": ["Bricolage Grotesque"],
+                        "headline-h2": ["Bricolage Grotesque"],
+                        "body-sm": ["Inter"],
+                        "label-xs": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-2xs": ["Inter"],
+                        "headline-h3": ["Bricolage Grotesque"]
+                    },
+                    "fontSize": {
+                        "headline-h1": ["39px", {"lineHeight": "1.15", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "hero-title": ["49px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-h2": ["31px", {"lineHeight": "1.25", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-xs": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                        "label-2xs": ["11px", {"lineHeight": "1.45", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-h3": ["24px", {"lineHeight": "1.35", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .coral-accent { border-left: 3px solid #BB4F3A; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #bdc9c7; border-radius: 10px; }
+        .glass-effect { backdrop-filter: blur(8px); background-color: rgba(246, 250, 249, 0.8); }
+    </style>
+</head>
+<body class="bg-surface font-body-base text-on-surface overflow-hidden h-screen">
+<!-- Left Navigation Bar (Shared Component SideNavBar) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-neutral-900 shadow-sm flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-h3 text-headline-h3 font-bold text-teal-700 dark:text-primary-fixed-dim">Hub Pro</h1>
+<p class="text-label-xs text-on-surface-variant opacity-70">Info Jeunes</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-base">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="feed">feed</span>
+<span class="font-body-base">Actualités</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home_repair_service">home_repair_service</span>
+<span class="font-body-base">Boîte à Outils</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-base">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-primary-fixed-dim border-l-[3px] border-coral-700 bg-surface-container-low dark:bg-inverse-surface" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-base font-semibold">Messagerie</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_phone">contact_phone</span>
+<span class="font-body-base">Annuaire</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-base">Paramètres</span>
+</a>
+<button class="w-full mt-4 bg-teal-700 text-on-primary py-3 px-4 rounded-lg font-label-xs flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                Aide &amp; Support
+            </button>
+</div>
+</aside>
+<!-- Top App Bar (Shared Component) -->
+<header class="fixed top-0 right-0 h-16 bg-surface dark:bg-neutral-900 border-b border-outline-variant dark:border-outline z-40 flex justify-between items-center px-gutter-desktop ml-64 w-[calc(100%-16rem)]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:outline-none focus:border-teal-600 transition-all" placeholder="Rechercher un message ou un collègue..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young female educator with a warm smile, wearing modern glasses and professional business casual attire. The background is a brightly lit, contemporary office space with soft teal and coral accents, reflecting a high-end corporate modern aesthetic. Soft, natural light illuminates her face, conveying confidence and accessibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoXmA-Pm0hLLXK5MiEmWLdSABvjh4kyFvGMjRyv-knNJDB9UTb9jS1CvUPbg9WClHuBQyHHjwvpkACs6-uxpJ5RSWS7D2TPN4WjQEDvqFfdeo1Jh5IXgTM7EmIwDgB76bw1yJ6W0uMcK2ci-am6ri6vY0EPt0VgPl9FPX5nIWcEWtm2K8tzeRsvAYVkUlsGPLRlTzULfNIkw2IlZ3iMUFbMg6_FQK7iOK8h3V-MhNOiQ9vsH_-sXC1DnI8Lglz_PlcbJ0pSvp9uKU7"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 h-screen flex overflow-hidden">
+<!-- Left Pane: Channels & DMs -->
+<div class="w-72 bg-surface-container-low border-r border-outline-variant flex flex-col">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-h3 text-[18px] text-teal-900">Conversations</h2>
+<button class="text-teal-700 hover:bg-surface-container p-1 rounded transition-colors">
+<span class="material-symbols-outlined" data-icon="edit_square">edit_square</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-6">
+<!-- Général Group -->
+<div>
+<button class="w-full flex items-center justify-between px-2 mb-2 text-label-2xs uppercase tracking-wider text-on-surface-variant font-bold">
+                        Général
+                        <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<div class="space-y-1">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white shadow-sm border-l-[3px] border-coral-700 text-teal-700 font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="tag">tag</span>
+<span class="text-body-sm">annonces-officielles</span>
+</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="tag">tag</span>
+<span class="text-body-sm">vie-de-bureau</span>
+</a>
+</div>
+</div>
+<!-- Groupes de Travail Group -->
+<div>
+<button class="w-full flex items-center justify-between px-2 mb-2 text-label-2xs uppercase tracking-wider text-on-surface-variant font-bold">
+                        Groupes de travail
+                        <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<div class="space-y-1">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="text-body-sm">Projet Hub v2</span>
+</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="text-body-sm">Communication Sud</span>
+</a>
+</div>
+</div>
+<!-- Direct Messages Group -->
+<div>
+<button class="w-full flex items-center justify-between px-2 mb-2 text-label-2xs uppercase tracking-wider text-on-surface-variant font-bold">
+                        Messages directs
+                        <span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" href="#">
+<div class="relative">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A professional portrait of a man with a modern beard and stylish undercut haircut, wearing a minimalist grey shirt. The lighting is crisp and cool-toned, with a clean architectural background that incorporates subtle teal gradients. The overall mood is focused and technical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-nA3dmup9YYftJiZ9oQOLTWFGl34S3GB2mGQLBNZnjTCHATyKEX63dp5vAkjYRVoz5jPaKWvGGLo7n3C_C5h5ClSK8IOkWFRXCIcqb2MOwicnxZmzHLz53DenIHO8u0oC_gRcleQhV49_BuoJio13xynr-SXbdXp4g_dOdUp_GfLpV2OjKE2Uan0XdM5TBtXDA489j8Qdn-rr9Sgd2-J8FVKETF3CXSJqsmAkCXndjFlRlIU5xYrjNSVxvgLDSSXWNqIK6HxR1Eax"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface-container-low rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-sm font-semibold truncate">Marc Levêque</p>
+<p class="text-label-xs opacity-60 truncate">C'est validé pour demain !</p>
+</div>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" href="#">
+<div class="relative">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A smiling woman with dark curly hair in a vibrant office setting, wearing a coral-colored blazer. The background features blurred modern furniture and large windows with soft daylight. The image has a clean, high-contrast look consistent with a professional SaaS platform's branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_aWI8GHqioOepREf-NDREktA5nqirGjR1-x6rw0g362qnaLgE1j1FC8NJAAAeOYAKa_1JiX_qBUbbHOkFhQDReHVP8fkpre9eXuYpY97vo5DITCBvyOPWYXnKKj5nBi27q3gcs921nspm5scBAg8F4msFMBQHecV5hkLqeYHvQno-j4qUY4Vpm95cXB-m5oQuuAJ5chrql3vbmABnROKNHmE_mAP0Aka7latB2FXKQS8pureKpSMPd2m3vZsjdTtksba-cQ16AZX6"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-neutral-400 border-2 border-surface-container-low rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-sm font-semibold truncate">Sophie Bernard</p>
+<p class="text-label-xs opacity-60 truncate">On se voit en réunion ?</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Pane: Message History -->
+<div class="flex-1 flex flex-col bg-white">
+<!-- Sticky Header -->
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center glass-effect sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-700" data-icon="tag">tag</span>
+<div>
+<h3 class="text-body-base font-bold text-teal-900">annonces-officielles</h3>
+<p class="text-label-xs text-on-surface-variant">Annonces importantes pour l'équipe Info Jeunes</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container rounded-full transition-all text-on-surface-variant" title="Épingler">
+<span class="material-symbols-outlined text-[20px]" data-icon="push_pin">push_pin</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-all text-on-surface-variant" title="Membres">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-all text-on-surface-variant" id="toggleInfoPane">
+<span class="material-symbols-outlined text-[20px]" data-icon="info">info</span>
+</button>
+</div>
+</div>
+<!-- Messages List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col">
+<div class="flex-1"></div>
+<div class="flex items-center my-6">
+<div class="flex-1 h-[1px] bg-outline-variant ml-6"></div>
+<span class="px-4 text-label-xs font-bold text-outline uppercase tracking-widest">Lundi 14 Octobre</span>
+<div class="flex-1 h-[1px] bg-outline-variant mr-6"></div>
+</div>
+<!-- Message 1 -->
+<div class="px-6 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex gap-4">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A man with short blond hair wearing a modern blue polo shirt, standing in a brightly lit professional environment. The image is crisp, using natural lighting that highlights a clean, corporate aesthetic with teal and neutral gray tones in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2llNYGrLTBaLJb4sWVDFbmBpUsWP5Tm82UriaEKZULTYPQS-vOf87_BbAAcumKGAAkPP5Q2HluIUk98vNpRWIa1Q84LccLwSGekGfQVBkmZo6SnjmI7vgAnZEHR8cQ4JJnnss0oyC1BsrREwX5-ezdS5JsFGDWNp-h3iMA-e_hWknvjTpsh-UqkPw1kLrvB1ZEZqPPoIKsP3wg483YFGK0EzaDIEquwJrkEz5lIYr8_86GzXov17cePsfArJg-m8bC3nc3tnskX2K"/>
+<div class="flex-1">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-body-sm font-bold text-teal-700">Julien Dupont</span>
+<span class="text-label-2xs text-on-surface-variant opacity-60">10:30</span>
+</div>
+<div class="text-body-base text-on-surface leading-relaxed">
+                                Bonjour à tous ! N'oubliez pas que le nouveau module "Orientation" sera déployé demain matin à 9h. Une maintenance courte est à prévoir. 🚀
+                            </div>
+</div>
+</div>
+</div>
+<!-- Message 2 (Alternating Background) -->
+<div class="px-6 py-4 bg-surface-container-low/30 hover:bg-surface-container-low transition-colors group">
+<div class="flex gap-4">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A professional woman with dark curly hair in a vibrant office setting, wearing a coral-colored blazer. The background features blurred modern furniture and large windows with soft daylight. The image has a clean, high-contrast look consistent with a professional SaaS platform's branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXmgqyn-5ISpIrtJJxxw1YoJxEceCfCr3gsm4TH1PVU8zj0CI-ETL9lyXbpzYoeklLKgi75j-AYZASvyhSF3wGK_VVy78lOMSNKjNiUUvkD62T3pWBQM_84PpmdfrfPXXKXqDr2EM7hZTTbaOoG91R1UgktYQ7MbFhTnlAa11Iy1sHpC5dOb4F4bX3KiboXKiaJzzCLRwbVKzQBBCfbBYBjevUtzPUAG0VzpKdQChltsD3PC2OPYi854Tzn28SR7iNyPZ7BFP9NLj-"/>
+<div class="flex-1">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-body-sm font-bold text-teal-700">Sophie Bernard</span>
+<span class="text-label-2xs text-on-surface-variant opacity-60">10:45</span>
+</div>
+<div class="text-body-base text-on-surface leading-relaxed">
+                                Merci Julien ! Les guides utilisateurs ont-ils déjà été mis à jour dans la Boîte à Outils ?
+                            </div>
+</div>
+</div>
+</div>
+<div class="flex items-center my-6">
+<div class="flex-1 h-[1px] bg-outline-variant ml-6"></div>
+<span class="px-4 text-label-xs font-bold text-coral-700 uppercase tracking-widest">Nouveaux messages</span>
+<div class="flex-1 h-[1px] bg-coral-700/30 mr-6"></div>
+</div>
+<!-- Message 3 -->
+<div class="px-6 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex gap-4">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A man with short blond hair wearing a modern blue polo shirt, standing in a brightly lit professional environment. The image is crisp, using natural lighting that highlights a clean, corporate aesthetic with teal and neutral gray tones in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0REGYloF7Qyc3R4LtFBU6O-2ZODbcL7qTJ5x4pzwFOXH9DCaJrKRg_8sg-u76OING30Q_4Zlf9ODALI8TfSEb1zShHsfTKbmPVhQxvZgDaKhB4CSBhRoDQ9lc7HO1LZgwsM6_oxfopRpdPc83OjLW5N5F_JIREfvTUA5SVsx9aU0rukQd0azjUiigG-8N4TkaKF_JVks9OW4uP0dI4XCs8Zay9vKwHtTRlaNh4tw1oiIMD1dtjDzCOnmIYxK6W11uh9ctYeg92M6o"/>
+<div class="flex-1">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-body-sm font-bold text-teal-700">Julien Dupont</span>
+<span class="text-label-2xs text-on-surface-variant opacity-60">Il y a 5 min</span>
+</div>
+<div class="text-body-base text-on-surface leading-relaxed">
+                                Oui Sophie, tout est prêt. Vous pouvez retrouver la documentation complète sous le tag <span class="px-1.5 py-0.5 bg-teal-100 text-teal-900 rounded font-semibold text-body-sm">#Documentation_v2</span>.
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Composer Area -->
+<div class="p-6 border-t border-outline-variant">
+<div class="border border-outline-variant rounded-xl shadow-sm focus-within:border-teal-600 transition-all overflow-hidden">
+<div class="flex items-center gap-1 p-2 bg-surface-container-lowest border-b border-outline-variant/50">
+<button class="p-1.5 hover:bg-surface-container-low rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_bold">format_bold</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-low rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_italic">format_italic</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-low rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="strikethrough_s">strikethrough_s</span>
+</button>
+<div class="w-[1px] h-4 bg-outline-variant mx-1"></div>
+<button class="p-1.5 hover:bg-surface-container-low rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="link">link</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-low rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+</div>
+<textarea class="w-full p-4 text-body-base border-none focus:ring-0 min-h-[100px] resize-none" placeholder="Répondre à #annonces-officielles" rows="3"></textarea>
+<div class="flex justify-between items-center px-4 py-3 bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded-full text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="mood">mood</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+</button>
+</div>
+<button class="bg-teal-700 text-on-primary px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all flex items-center gap-2">
+                            Envoyer
+                            <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Pane: Channel Settings & Members -->
+<div class="w-80 border-l border-outline-variant bg-surface flex flex-col" id="infoPane">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-h3 text-[18px] text-teal-900">Détails du canal</h3>
+<button class="p-1 hover:bg-surface-container rounded transition-colors" id="closeInfoPane">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+<!-- Notification Control -->
+<section>
+<h4 class="text-label-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Notifications</h4>
+<div class="space-y-3">
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:border-teal-700 cursor-pointer group transition-all">
+<span class="text-body-sm font-medium">Toutes les alertes</span>
+<input checked="" class="w-4 h-4 text-teal-700 focus:ring-teal-700" name="notify" type="radio"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:border-teal-700 cursor-pointer group transition-all">
+<span class="text-body-sm font-medium">Mentions uniquement</span>
+<input class="w-4 h-4 text-teal-700 focus:ring-teal-700" name="notify" type="radio"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:border-teal-700 cursor-pointer group transition-all">
+<span class="text-body-sm font-medium">Muet</span>
+<input class="w-4 h-4 text-teal-700 focus:ring-teal-700" name="notify" type="radio"/>
+</label>
+</div>
+</section>
+<!-- Member List -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-label-xs font-bold text-on-surface-variant uppercase tracking-widest">Membres (12)</h4>
+<button class="text-teal-700 text-label-xs font-semibold">Voir tout</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A man with short blond hair wearing a modern blue polo shirt, standing in a brightly lit professional environment. The image is crisp, using natural lighting that highlights a clean, corporate aesthetic with teal and neutral gray tones in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvMgJInVZZgfAuGwae4sQtFcfbi-yaWcIJ1f7oloIK6m23acmlJMYC_FMEoIC9uNXUcNrgFcwsQSwRA1ntq10jOoClM5d9ngzmQ0bnFELEidOov4AJDe_0nRIpQzt3c5liSnWdpw951-QpO9OpjxDDZLmZjNyxWyPUyPNim1HyQEXOOXJ5WmahR7Vf_NfR6b6KiLNHzfpR7KhZQ4kH63M4TeFqDfC1MkFTHfHV2fSzEpq8-LCyD0b8MP1qmLfkYnYYkTwKHiDgsVcC"/>
+<div>
+<p class="text-body-sm font-semibold">Julien Dupont</p>
+<p class="text-label-xs opacity-60">Admin • En ligne</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A professional woman with dark curly hair in a vibrant office setting, wearing a coral-colored blazer. The background features blurred modern furniture and large windows with soft daylight. The image has a clean, high-contrast look consistent with a professional SaaS platform's branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVhf_J0Vg4rjdC0O-w0ewn4MhyMRh_X9u0XaPE809oimanbmCSuCbHGZ8XYFnG_SgcR6wRS-z0_T9HeGDDqLXlBpWGyqW5dQze6f64HckyWDBCs2CdmuQR_2emA1k0mJCW2ZmPYQKYGovdURHxEPDVTRLuqC9sCg06DGgpxyp_DISuHAbrMBXk67VI0koTeBQqOAsfADorPBSaY1bLRdGPLnGlWfeR47ffetQ80P5QJ1E07a6uf9pb4WFGp8XThwkjqXu7LfOzwdR8"/>
+<div>
+<p class="text-body-sm font-semibold">Sophie Bernard</p>
+<p class="text-label-xs opacity-60">Communication</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold text-label-xs">AL</div>
+<div>
+<p class="text-body-sm font-semibold">Amélie Laurent</p>
+<p class="text-label-xs opacity-60">Marketing • Absent</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-outline-variant rounded-lg text-body-sm font-semibold text-on-surface-variant hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+                        Ajouter un membre
+                    </button>
+</section>
+<!-- Files & Shared Media (Bonus) -->
+<section>
+<h4 class="text-label-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Fichiers partagés</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-2 hover:bg-surface-container-low rounded-lg transition-all cursor-pointer">
+<div class="w-8 h-8 rounded bg-orange-100 flex items-center justify-center text-orange-700">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-sm font-medium truncate">planning_v2.pdf</p>
+<p class="text-label-2xs opacity-60">Hier, 14:20 • 2.4 MB</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        // Simple Interaction for Toggle Sidebar
+        const infoPane = document.getElementById('infoPane');
+        const toggleBtn = document.getElementById('toggleInfoPane');
+        const closeBtn = document.getElementById('closeInfoPane');
+
+        toggleBtn.addEventListener('click', () => {
+            infoPane.classList.toggle('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            infoPane.classList.add('hidden');
+        });
+
+        // Interactive effect for textarea
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('focus', () => {
+            textarea.parentElement.classList.add('ring-2', 'ring-teal-700/20');
+        });
+        textarea.addEventListener('blur', () => {
+            textarea.parentElement.classList.remove('ring-2', 'ring-teal-700/20');
+        });
+    </script>
+</body></html>

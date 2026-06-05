@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hub Pro - Newsfeed &amp; Actualités</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2c3131",
+                    "tertiary-fixed": "#ffdbcd",
+                    "neutral-900": "#1A2020",
+                    "surface-variant": "#dfe3e2",
+                    "on-secondary-container": "#731b0b",
+                    "surface-bright": "#f6faf9",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#006a65",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#a33d2a",
+                    "tertiary": "#8b4627",
+                    "surface-container-high": "#e5e9e7",
+                    "surface-container-highest": "#dfe3e2",
+                    "on-secondary-fixed": "#3e0400",
+                    "on-tertiary-fixed-variant": "#743417",
+                    "surface": "#f6faf9",
+                    "tertiary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#832615",
+                    "on-surface-variant": "#3e4948",
+                    "surface-container-low": "#f0f4f3",
+                    "on-primary-fixed-variant": "#00504c",
+                    "primary-fixed-dim": "#76d6cf",
+                    "on-tertiary-container": "#fff6f4",
+                    "teal-900": "#00403D",
+                    "surface-container": "#ebefed",
+                    "inverse-on-surface": "#edf2f0",
+                    "on-surface": "#181d1c",
+                    "neutral-50": "#F4F7F7",
+                    "inverse-primary": "#76d6cf",
+                    "teal-700": "#00807A",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#00201e",
+                    "secondary-fixed-dim": "#ffb4a5",
+                    "tertiary-container": "#a95e3d",
+                    "surface-dim": "#d7dbd9",
+                    "coral-700": "#BB4F3A",
+                    "secondary-fixed": "#ffdad3",
+                    "on-error": "#ffffff",
+                    "outline": "#6e7978",
+                    "on-background": "#181d1c",
+                    "teal-50": "#F0F9F9",
+                    "primary": "#006560",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#e0fffb",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#93f3eb",
+                    "primary-container": "#00807a",
+                    "outline-variant": "#bdc9c7",
+                    "background": "#f6faf9",
+                    "secondary-container": "#fe8269",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "4px",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "gutter-desktop": "24px",
+                    "target-mobile": "48px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "gutter-mobile": "16px",
+                    "target-touch": "44px"
+            },
+            "fontFamily": {
+                    "headline-h1": ["Bricolage Grotesque"],
+                    "body-base": ["Inter"],
+                    "hero-title": ["Bricolage Grotesque"],
+                    "headline-h2": ["Bricolage Grotesque"],
+                    "body-sm": ["Inter"],
+                    "label-xs": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-2xs": ["Inter"],
+                    "headline-h3": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                    "headline-h1": ["39px", {"lineHeight": "1.15", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "hero-title": ["49px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-h2": ["31px", {"lineHeight": "1.25", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-xs": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                    "label-2xs": ["11px", {"lineHeight": "1.45", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-h3": ["24px", {"lineHeight": "1.35", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .coral-accent {
+            position: relative;
+        }
+        .coral-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            bottom: 15%;
+            width: 3px;
+            background-color: #BB4F3A;
+            border-radius: 0 4px 4px 0;
+        }
+        .kinetic-slant {
+            transform: skewX(-15deg);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-base text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface shadow-sm flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-h3 text-headline-h3 font-bold text-teal-700">Hub Pro</h1>
+<p class="text-on-surface-variant font-label-xs">Info Jeunes</p>
+</div>
+<nav class="flex-grow flex flex-col">
+<!-- Active Tab: Actualités -->
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 border-l-[3px] border-coral-700 bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 border-l-[3px] border-coral-700 bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="feed" style="font-variation-settings: 'FILL' 1;">feed</span>
+<span>Actualités</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home_repair_service">home_repair_service</span>
+<span>Boîte à Outils</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span>Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span>Messagerie</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_phone">contact_phone</span>
+<span>Annuaire</span>
+</a>
+</nav>
+<div class="mt-auto px-4 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Paramètres</span>
+</a>
+<button class="w-full mt-4 bg-teal-700 text-white py-2.5 rounded hover:bg-teal-900 transition-colors font-medium text-sm">
+                Aide &amp; Support
+            </button>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 h-16 flex justify-between items-center px-gutter-desktop ml-64 w-[calc(100%-16rem)] bg-surface border-b border-outline-variant z-40">
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full w-96 border border-outline-variant">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm ml-2 w-full placeholder:text-outline" placeholder="Rechercher une actualité, un membre..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full relative transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-coral-700 rounded-full border border-surface"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="font-body-sm font-semibold leading-tight group-hover:text-teal-700 transition-colors">Marc Durand</p>
+<p class="font-label-2xs text-on-surface-variant">Conseiller Régional</p>
+</div>
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover border-2 border-teal-700" data-alt="A professional portrait of a middle-aged man with short dark hair and a friendly expression, wearing a navy blue blazer and white shirt. The background is a blurred office environment with soft morning light filtering through windows, creating a bright and professional atmosphere that fits a corporate modern UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQMjbAI6MvkozIHO8RkRkAsOAzb0JoGUaH4DErPI-E9wZazGGTEhLjdwkPUZkVmelZ810j-A1_V7pFGy8mKH19dMC4hoHbcZKOYH0cEmH_xW0kM7kzLY8Hi6KxANaoKc3ZalD3w6w9LDLUXdpy-y3dG7Eir136ZJcOQJrdYjY7-IuMbweQhZm9_ETXfeMhcQOt4G0yvmkAJTn7XekDR_k8qhDH7M-MV_0WRuDJatbgNJ5ksHBrbbhxOKIzspL1Qy6vrWJJ6W_mKgO0"/>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="ml-64 mt-16 p-gutter-desktop flex justify-center gap-8 bg-background min-h-screen">
+<!-- Central Feed Column -->
+<div class="w-full max-w-[800px] flex flex-col gap-6">
+<!-- Composer Input -->
+<div class="bg-surface p-6 rounded-lg border border-outline-variant shadow-sm">
+<div class="flex gap-4">
+<img alt="Current User" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmjbZy8WURxvZBvGrZDmvmgmIFDvZHyKMXZ4KxpHSa_I1_9NIZOweUDok6dZ2QrMNbq38na8QCAMxAWS3Z6BiAlizr4gEQ0CkiSPkXz9rJ0BmY7c4z8L8x8L5jmi1eqnOXIE-rJkhu5lbt_cib-sT5itakMjTj1Fk0BbhvIQZAmLKTsa1o_D8GZQ0xtquuVZSYrxrEb0aczDhB3mwI_d24dC7wkVDN2SpMcRVjm529S-3-8RZVCWVh23Bwie4tiHDl3CAz-PxVj0ey"/>
+<div class="flex-grow">
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-sm focus:ring-teal-700 focus:border-teal-700 min-h-[100px] transition-all resize-none" placeholder="Partager une actualité ou un document avec le réseau..."></textarea>
+<div class="flex justify-between items-center mt-4">
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-teal-50 text-teal-700 font-label-xs transition-colors group">
+<span class="material-symbols-outlined text-lg" data-icon="image">image</span>
+<span>Image</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-teal-50 text-teal-700 font-label-xs transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+<span>Document</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-teal-50 text-teal-700 font-label-xs transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="sell">sell</span>
+<span>Tag</span>
+</button>
+</div>
+<button class="bg-teal-700 text-white px-6 py-2 rounded font-medium hover:bg-teal-900 transition-all active:scale-95 shadow-sm">
+                                Publier
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Items -->
+<!-- Post 1 -->
+<article class="bg-surface rounded-lg border border-outline-variant shadow-sm group">
+<div class="p-6">
+<!-- Header -->
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<img alt="Sarah L." class="w-12 h-12 rounded-full object-cover" data-alt="Close-up portrait of a professional woman with auburn hair and glasses, smiling confidently. She is in a brightly lit modern office setting with a teal and soft white color palette. The lighting is crisp and clear, emphasizing a high-contrast and professional aesthetic suitable for a social network feed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJoM_3QPi7fPZnoTXngVMgfiNYP5xKHprnGw8nka2Q2RLsPhr1MAxtTEmgkgF-GMNFUsmAgG-99k3-DOLZrRVn1ZgbU_tgGEnF_tXl7w2_d1bsMkd-js0PWOnjlXvqPTLBJz-1N8QWJmvfEZXGnbx-nBVNDZwIxw2q-5iwlBc8Il-8K0uH-MHa0meUjBbHRY14gR6HD4_Yafw6gr-9iPDYJrLMLQ7WrOk8CYT5SRoaRtk1FPg26TOKQyoisKdGia-bG3BX2dtchLhB"/>
+<div>
+<h3 class="font-body-base font-bold text-on-surface">Sarah Lemoine</h3>
+<div class="flex items-center gap-2">
+<span class="font-label-2xs text-on-surface-variant uppercase tracking-wider">Directrice Projets • IDF</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-2xs text-outline">Il y a 2 heures</span>
+</div>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-outline" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<!-- Body -->
+<div class="space-y-4">
+<p class="text-body-base text-on-surface leading-relaxed">
+                            Nous venons de mettre à jour le guide d'accompagnement pour les dispositifs régionaux 2024. Ce document inclut les nouveaux barèmes et les dates clés pour les dépôts de dossiers de subvention. N'hésitez pas à poser vos questions en commentaire !
+                        </p>
+<!-- Attachment Block -->
+<div class="border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest flex items-center group/file cursor-pointer transition-all hover:border-teal-700/50">
+<div class="bg-teal-700 p-4 text-white">
+<span class="material-symbols-outlined text-3xl" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div class="p-4 flex-grow">
+<h4 class="font-body-sm font-semibold text-on-surface group-hover/file:text-teal-700">Guide_Dispositifs_Regionaux_2024.pdf</h4>
+<p class="text-label-xs text-outline">2.4 MB • Mis à jour aujourd'hui</p>
+</div>
+<div class="p-4">
+<span class="material-symbols-outlined text-teal-700" data-icon="download">download</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex justify-between rounded-b-lg">
+<div class="flex gap-6">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-coral-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="favorite">favorite</span>
+<span>24</span>
+</button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="chat_bubble">chat_bubble</span>
+<span>8</span>
+</button>
+</div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="bookmark">bookmark</span>
+<span>Enregistrer</span>
+</button>
+</div>
+</article>
+<!-- Post 2 (Image Post) -->
+<article class="bg-surface rounded-lg border border-outline-variant shadow-sm">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-coral-100 flex items-center justify-center rounded-full text-coral-700 font-bold">
+                                IJ
+                            </div>
+<div>
+<h3 class="font-body-base font-bold text-on-surface">Info Jeunes National</h3>
+<div class="flex items-center gap-2">
+<span class="bg-coral-100 text-coral-700 text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-tight">Annonce Officielle</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-2xs text-outline">Il y a 5 heures</span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-body-base text-on-surface">
+                            Retour en images sur le séminaire inter-régional qui s'est tenu hier à Lyon. Un moment d'échange riche sur l'avenir de l'orientation professionnelle pour les 15-25 ans. Merci à tous les participants !
+                        </p>
+<div class="aspect-video w-full rounded-xl overflow-hidden">
+<img alt="Seminar" class="w-full h-full object-cover" data-alt="A dynamic, high-angle shot of a group of diverse professionals engaged in a workshop at a bright, modern convention center. The space is filled with natural light, clean architectural lines, and features a primary color scheme of teal and coral. Participants are smiling and collaborating around tablets and printed materials, creating a mood of professional innovation and community." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlRw2lc9vMuURLkubBBur1YL3awegqqSe3_9vIjct6YxhsA31xqUE5gxZieNrmFuY0e_dPzC7c8QJ17IBXTecS2gdISt5hfk8RcaqhoPau709HIQc6CoVymoUWp2GHi297B8QMljHIfK2DRFcRTLsKtBRdCNi5Gm8dQciGB7z1FVBDF9SEq0OLmSFRoO5c_ysZIGxvBWowH_6loVtLAzQSzq9YGelRjI2AfFaS588DKMWMP-kXLmc2lV3rVFzJigvKpUnm8jLtUR4m"/>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex justify-between rounded-b-lg">
+<div class="flex gap-6">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-coral-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="favorite">favorite</span>
+<span>56</span>
+</button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="chat_bubble">chat_bubble</span>
+<span>12</span>
+</button>
+</div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+<span>Partager</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Right Sticky Sidebar -->
+<aside class="w-80 space-y-6 hidden xl:block">
+<div class="sticky top-24 space-y-6">
+<!-- Filters/Quick Toggles -->
+<div class="bg-surface p-6 rounded-lg border border-outline-variant shadow-sm">
+<h4 class="font-headline-h3 text-base font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-700" data-icon="filter_list">filter_list</span>
+                        Filtres du flux
+                    </h4>
+<div class="space-y-2">
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low rounded cursor-pointer transition-colors">
+<span class="text-body-sm font-medium">Flux National</span>
+<input checked="" class="rounded text-teal-700 focus:ring-teal-700 border-outline-variant" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low rounded cursor-pointer transition-colors">
+<span class="text-body-sm font-medium">Flux Régional</span>
+<input checked="" class="rounded text-teal-700 focus:ring-teal-700 border-outline-variant" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 hover:bg-surface-container-low rounded cursor-pointer transition-colors">
+<span class="text-body-sm font-medium">Départemental (75)</span>
+<input class="rounded text-teal-700 focus:ring-teal-700 border-outline-variant" type="checkbox"/>
+</label>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant">
+<p class="font-label-2xs text-outline uppercase tracking-widest mb-3">Tags Populaires</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-xs font-medium cursor-pointer hover:bg-teal-100 transition-colors">#Subventions</span>
+<span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-xs font-medium cursor-pointer hover:bg-teal-100 transition-colors">#Orientation</span>
+<span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-xs font-medium cursor-pointer hover:bg-teal-100 transition-colors">#Formation</span>
+<span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-xs font-medium cursor-pointer hover:bg-teal-100 transition-colors">#Saisonnier</span>
+</div>
+</div>
+</div>
+<!-- Pinned Announcements -->
+<div class="bg-surface rounded-lg border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 bg-teal-700 text-white flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="push_pin">push_pin</span>
+<h4 class="font-body-sm font-bold uppercase tracking-wider">À la une</h4>
+</div>
+<div class="p-6 space-y-4">
+<div class="coral-accent pl-4 group cursor-pointer">
+<p class="text-xs text-outline mb-1">Événement • Demain</p>
+<p class="text-body-sm font-semibold group-hover:text-teal-700 transition-colors">Webinaire : Réforme de l'apprentissage</p>
+</div>
+<div class="coral-accent pl-4 group cursor-pointer">
+<p class="text-xs text-outline mb-1">Important • 2j restants</p>
+<p class="text-body-sm font-semibold group-hover:text-teal-700 transition-colors">Clôture des appels à projets "Été Jeunes"</p>
+</div>
+<div class="coral-accent pl-4 group cursor-pointer">
+<p class="text-xs text-outline mb-1">Mise à jour</p>
+<p class="text-body-sm font-semibold group-hover:text-teal-700 transition-colors">Nouveaux formulaires d'adhésion 2024</p>
+</div>
+</div>
+<div class="px-6 pb-6">
+<button class="w-full text-center text-teal-700 font-medium text-xs hover:underline decoration-2 underline-offset-4">
+                            Voir toutes les annonces
+                        </button>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="px-6 flex flex-wrap gap-x-4 gap-y-2">
+<a class="text-[11px] text-outline hover:text-teal-700" href="#">Mentions Légales</a>
+<a class="text-[11px] text-outline hover:text-teal-700" href="#">Confidentialité</a>
+<a class="text-[11px] text-outline hover:text-teal-700" href="#">Accessibilité</a>
+<p class="text-[11px] text-outline w-full mt-2">© 2024 Info Jeunes - Hub Pro</p>
+</div>
+</div>
+</aside>
+</main>
+<script>
+        // Micro-interaction for hover effects on post cards
+        document.querySelectorAll('article').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+
+        // Toggle focus state on composer
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('focus', () => {
+            textarea.closest('div').classList.add('ring-2', 'ring-teal-700/10');
+        });
+        textarea.addEventListener('blur', () => {
+            textarea.closest('div').classList.remove('ring-2', 'ring-teal-700/10');
+        });
+    </script>
+</body></html>
