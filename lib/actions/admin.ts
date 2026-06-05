@@ -29,7 +29,7 @@ export async function suspendUser(userId: string) {
   if (session.user.id === userId) throw new Error("Vous ne pouvez pas suspendre vous-même")
 
   await db.update(users).set({ suspended: true }).where(eq(users.id, userId))
-  revalidateTag("users", {})
+  revalidateTag("users", "max")
 }
 
 export async function unsuspendUser(userId: string) {
@@ -37,7 +37,7 @@ export async function unsuspendUser(userId: string) {
   if (!session) throw new Error("Non authentifié")
 
   await db.update(users).set({ suspended: false }).where(eq(users.id, userId))
-  revalidateTag("users", {})
+  revalidateTag("users", "max")
 }
 
 export async function assignRole(userId: string, role: Role) {
@@ -47,7 +47,7 @@ export async function assignRole(userId: string, role: Role) {
   if (!Object.values(ROLES).includes(role)) throw new Error("Rôle invalide")
 
   await db.update(users).set({ role }).where(eq(users.id, userId))
-  revalidateTag("users", {})
+  revalidateTag("users", "max")
 }
 
 // ─── Moderation ───────────────────────────────────────────────────────────────
@@ -70,12 +70,12 @@ export async function createTag(input: { name: string }) {
   const parsed = tagSchema.parse(input)
   const slug = parsed.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
   await db.insert(tags).values({ id: createId(), name: parsed.name, slug })
-  revalidateTag("tags", {})
+  revalidateTag("tags", "max")
 }
 
 export async function deleteTag(id: string) {
   await db.delete(tags).where(eq(tags.id, id))
-  revalidateTag("tags", {})
+  revalidateTag("tags", "max")
 }
 
 // ─── Analytics ────────────────────────────────────────────────────────────────
