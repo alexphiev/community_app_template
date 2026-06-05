@@ -3,10 +3,10 @@
 const DAYS = ["Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam.", "Dim."]
 
 const CATEGORY_STYLES: Record<string, { bg: string; border: string; text: string }> = {
-  formation: { bg: "bg-blue-50",           border: "border-blue-500",         text: "text-blue-900" },
-  reunion:   { bg: "bg-green-50",          border: "border-green-500",        text: "text-green-900" },
-  evenement: { bg: "bg-purple-50",         border: "border-purple-500",       text: "text-purple-900" },
-  autre:     { bg: "bg-surface-container", border: "border-outline-variant",  text: "text-on-surface" },
+  formation: { bg: "bg-teal-100",   border: "border-teal-700",   text: "text-teal-800" },
+  reunion:   { bg: "bg-coral-100",  border: "border-coral-700",  text: "text-coral-800" },
+  evenement: { bg: "bg-teal-100",   border: "border-teal-700",   text: "text-teal-800" },
+  autre:     { bg: "bg-neutral-100", border: "border-outline",    text: "text-on-surface" },
 }
 
 type CalEvent = {

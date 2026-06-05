@@ -9,10 +9,10 @@ const MONTH_NAMES = [
 ]
 
 const CATEGORY_COLORS: Record<string, string> = {
-  formation: "bg-blue-500",
-  reunion:   "bg-green-500",
-  evenement: "bg-purple-500",
-  autre:     "bg-outline-variant",
+  formation: "bg-teal-700",
+  reunion:   "bg-coral-700",
+  evenement: "bg-teal-700",
+  autre:     "bg-outline",
 }
 
 export default async function AgendaPage({
