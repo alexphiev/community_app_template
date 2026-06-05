@@ -7,10 +7,6 @@ type Tag = { id: string; name: string; slug: string }
 
 interface ResourceFilterProps {
   tags: Tag[]
-  selectedTagIds: string[]
-  selectedTypes: string[]
-  onTagToggle: (id: string) => void
-  onTypeToggle: (type: string) => void
 }
 
 const MEDIA_TYPES = [
@@ -46,13 +42,17 @@ function FilterSection({ title, children }: { title: string; children: React.Rea
   )
 }
 
-export function ResourceFilter({
-  tags,
-  selectedTagIds,
-  selectedTypes,
-  onTagToggle,
-  onTypeToggle,
-}: ResourceFilterProps) {
+export function ResourceFilter({ tags }: ResourceFilterProps) {
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([])
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+
+  function onTagToggle(id: string) {
+    setSelectedTagIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id])
+  }
+
+  function onTypeToggle(type: string) {
+    setSelectedTypes((prev) => prev.includes(type) ? prev.filter((x) => x !== type) : [...prev, type])
+  }
   return (
     <aside className="w-72 flex-shrink-0 space-y-6" aria-label="Filtres">
       <div className="space-y-4">

@@ -33,13 +33,7 @@ export default async function ToolboxPage({
       </div>
 
       <div className="flex gap-6">
-        <ResourceFilter
-          tags={allTags}
-          selectedTagIds={[]}
-          selectedTypes={[]}
-          onTagToggle={() => {}}
-          onTypeToggle={() => {}}
-        />
+        <ResourceFilter tags={allTags} />
         <ResourceGrid resources={resourceList} total={resourceList.length} page={page} />
       </div>
     </div>
