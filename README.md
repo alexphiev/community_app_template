@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hub Pro — Info Jeunes Pays de la Loire
 
-## Getting Started
+Plateforme professionnelle du Réseau Info Jeunes PDL.
 
-First, run the development server:
+## Développement local
+
+### 1. Prérequis
+
+- Node.js 20+
+- pnpm
+- PostgreSQL (local ou via Docker)
+
+### 2. Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Variables d'environnement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copiez `.env.local.example` (ou créez `.env.local`) avec :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL=postgresql://localhost:5432/hub_pro_dev
+AUTH_SECRET=your-secret-here        # générer avec: openssl rand -base64 32
 
-## Learn More
+# Resend (email d'invitation)
+RESEND_API_KEY=re_your_key
+RESEND_FROM_EMAIL=hub@info-jeunes-pdl.fr
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Base de données
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Créer la base
+createdb hub_pro_dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Appliquer les migrations
+DATABASE_URL=postgresql://localhost:5432/hub_pro_dev pnpm db:migrate
 
-## Deploy on Vercel
+# Peupler avec les données de démo
+DATABASE_URL=postgresql://localhost:5432/hub_pro_dev pnpm db:seed
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Lancer l'application
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
+
+Ouvrir [http://localhost:3000](http://localhost:3000).
+
+### Comptes de démo
+
+| Nom | Email | Mot de passe | Rôle |
+|-----|-------|--------------|------|
+| Alexandre Martin | alexandre.martin@ij-pdl.fr | password123 | Admin |
+| Marie Leroy | marie.leroy@ij-nantes.fr | password123 | Salarié IJ |
+| Thomas Dubois | thomas.dubois@ij-49.fr | password123 | Salarié IJ |
+| Sophie Bernard | sophie.bernard@pij-85.fr | password123 | Pro Réseau |
+| Sarah Lemoine | sarah.lemoine@crij-pdl.fr | password123 | Pro Réseau |
+| Marc Durand | marc.durand@bij-laval.fr | password123 | Pro Réseau |
+| Claire Petit | claire.petit@ml44.fr | password123 | Relais externe |
+| Lucas Moreau | lucas.moreau@cidj.com | password123 | Relais externe |
+
+## Scripts utiles
+
+```bash
+pnpm dev          # Serveur de développement
+pnpm build        # Build de production
+pnpm tsc          # Vérification TypeScript
+pnpm lint         # Lint ESLint
+
+pnpm db:generate  # Générer une migration Drizzle
+pnpm db:migrate   # Appliquer les migrations
+pnpm db:seed      # Peupler avec les données de démo
+pnpm db:studio    # Ouvrir Drizzle Studio
+
+pnpm test         # Tests unitaires (Vitest)
+```
+
+## Architecture
+
+Voir [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) pour la documentation complète.

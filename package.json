@@ -11,6 +11,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "test": "vitest",
+    "db:seed": "tsx scripts/seed.ts",
     "etl:run": "tsx etl/migrate.ts"
   },
   "dependencies": {
