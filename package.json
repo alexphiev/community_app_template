@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio",
     "test": "vitest",
     "db:seed": "tsx scripts/seed.ts",
-    "etl:run": "tsx etl/migrate.ts"
+    "etl:run": "tsx etl/migrate.ts",
+    "playwright:test": "playwright test"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.2",
