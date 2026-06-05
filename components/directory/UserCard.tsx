@@ -51,8 +51,7 @@ export function UserCard({ user }: { user: UserCardUser }) {
 
       {/* Info */}
       <h3
-        className="text-[24px] font-semibold leading-[1.35] text-on-surface mb-1"
-        style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
+        className="font-headline-h3 text-headline-h3 text-on-surface mb-1"
       >
         {displayName}
       </h3>

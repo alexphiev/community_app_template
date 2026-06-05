@@ -30,8 +30,7 @@ export default async function DirectoryPage({
     <div>
       <div className="mb-8">
         <h1
-          className="text-[31px] font-semibold leading-[1.25] text-on-surface mb-1"
-          style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
+          className="font-headline-h2 text-headline-h2 text-on-surface mb-1"
         >
           Annuaire du Réseau
         </h1>
