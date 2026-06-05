@@ -16,6 +16,7 @@ export const users = pgTable("user", {
   structure: text("structure"),
   phone: text("phone"),
   suspended: boolean("suspended").notNull().default(false),
+  passwordHash: text("password_hash"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 })
@@ -57,6 +58,25 @@ export const verificationTokens = pgTable(
     compositePk: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 )
+
+export const inviteTokens = pgTable(
+  "invite_tokens",
+  {
+    token: text("token").primaryKey(),
+    email: text("email").notNull(),
+    role: roleEnum("role").notNull(),
+    name: text("name"),
+    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+    usedAt: timestamp("used_at", { mode: "date" }),
+    createdById: text("created_by_id").notNull().references(() => users.id),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [index("invite_tokens_email_idx").on(t.email)]
+)
+
+export const inviteTokensRelations = relations(inviteTokens, ({ one }) => ({
+  createdBy: one(users, { fields: [inviteTokens.createdById], references: [users.id] }),
+}))
 
 export const resourceTypeEnum = pgEnum("resource_type", [
   "documentation",
