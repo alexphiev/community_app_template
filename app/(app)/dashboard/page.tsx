@@ -30,8 +30,8 @@ export default async function DashboardPage() {
   const featuredResources = pinnedResources.filter((r) => r.pinned).slice(0, 4)
 
   const CATEGORY_BG: Record<string, string> = {
-    formation: "bg-coral-700",
-    reunion:   "bg-teal-700",
+    formation: "bg-teal-700",
+    reunion:   "bg-coral-700",
     evenement: "bg-teal-700",
     autre:     "bg-surface-container",
   }
@@ -41,8 +41,7 @@ export default async function DashboardPage() {
       {/* Hero greeting */}
       <section className="mb-10">
         <h1
-          className="text-[49px] font-extrabold leading-[1.1] tracking-[-0.02em] text-teal-900 mb-2"
-          style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
+          className="font-hero-title text-hero-title text-teal-900 mb-2"
         >
           Bonjour {firstName}.
         </h1>
