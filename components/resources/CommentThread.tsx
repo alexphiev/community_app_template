@@ -11,24 +11,38 @@ type Comment = {
   author: { id: string; name: string }
 }
 
+type CurrentUser = { id: string; name: string }
+
 function CommentItem({
   comment,
   resourceId,
   replies,
+  currentUser,
+  onReplyAdded,
 }: {
   comment: Comment
   resourceId: string
   replies: Comment[]
+  currentUser: CurrentUser
+  onReplyAdded: (reply: Comment) => void
 }) {
   const [replying, setReplying] = useState(false)
   const [replyText, setReplyText] = useState("")
 
   async function submitReply(e: React.FormEvent) {
     e.preventDefault()
-    if (!replyText.trim()) return
-    await createComment({ resourceId, parentId: comment.id, body: replyText.trim() })
+    const trimmed = replyText.trim()
+    if (!trimmed) return
     setReplyText("")
     setReplying(false)
+    const result = await createComment({ resourceId, parentId: comment.id, body: trimmed })
+    onReplyAdded({
+      id: result.id,
+      body: trimmed,
+      parentId: comment.id,
+      createdAt: new Date(),
+      author: currentUser,
+    })
   }
 
   return (
@@ -76,7 +90,7 @@ function CommentItem({
         {replies.length > 0 && (
           <div className="mt-3 pl-4 border-l-2 border-outline-variant space-y-3">
             {replies.map((reply) => (
-              <CommentItem key={reply.id} comment={reply} resourceId={resourceId} replies={[]} />
+              <CommentItem key={reply.id} comment={reply} resourceId={resourceId} replies={[]} currentUser={currentUser} onReplyAdded={onReplyAdded} />
             ))}
           </div>
         )}
@@ -87,26 +101,41 @@ function CommentItem({
 
 export function CommentThread({
   resourceId,
-  comments,
+  comments: initialComments,
+  currentUser,
 }: {
   resourceId: string
   comments: Comment[]
+  currentUser: CurrentUser
 }) {
+  const [allComments, setAllComments] = useState<Comment[]>(initialComments)
   const [newComment, setNewComment] = useState("")
 
-  const topLevel = comments.filter((c) => !c.parentId)
+  const topLevel = allComments.filter((c) => !c.parentId)
   const replyMap: Record<string, Comment[]> = {}
-  for (const c of comments) {
+  for (const c of allComments) {
     if (c.parentId) {
       replyMap[c.parentId] = [...(replyMap[c.parentId] ?? []), c]
     }
   }
 
+  function handleCommentAdded(comment: Comment) {
+    setAllComments((prev) => [...prev, comment])
+  }
+
   async function submitComment(e: React.FormEvent) {
     e.preventDefault()
-    if (!newComment.trim()) return
-    await createComment({ resourceId, body: newComment.trim() })
+    const trimmed = newComment.trim()
+    if (!trimmed) return
     setNewComment("")
+    const result = await createComment({ resourceId, body: trimmed })
+    handleCommentAdded({
+      id: result.id,
+      body: trimmed,
+      parentId: null,
+      createdAt: new Date(),
+      author: currentUser,
+    })
   }
 
   return (
@@ -146,6 +175,8 @@ export function CommentThread({
               comment={comment}
               resourceId={resourceId}
               replies={replyMap[comment.id] ?? []}
+              currentUser={currentUser}
+              onReplyAdded={handleCommentAdded}
             />
           ))
         )}

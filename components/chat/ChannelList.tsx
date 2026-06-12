@@ -43,8 +43,10 @@ export function ChannelList({ channels, activeChannelId }: ChannelListProps) {
           Conversations
         </h2>
         <button
-          className="text-teal-700 hover:bg-surface-container p-1 rounded transition-colors"
+          className="text-teal-700/40 p-1 rounded cursor-not-allowed"
           aria-label="Nouvelle conversation"
+          disabled
+          title="Fonctionnalité à venir"
         >
           <span className="material-symbols-outlined text-[20px]" aria-hidden="true">edit_square</span>
         </button>

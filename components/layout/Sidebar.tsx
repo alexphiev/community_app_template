@@ -59,13 +59,14 @@ export function Sidebar({ role }: { role: Role }) {
       </nav>
 
       <div className="mt-auto px-4 space-y-1">
-        <Link
-          href="/settings"
-          className="flex items-center gap-3 px-4 py-3 text-[#3e4948] text-[14px] hover:bg-[#f0f4f3] rounded-lg transition-colors"
+        <div
+          title="Fonctionnalité à venir"
+          className="flex items-center gap-3 px-4 py-3 text-[#3e4948]/40 text-[14px] rounded-lg cursor-not-allowed select-none"
+          aria-disabled="true"
         >
           <span className="material-symbols-outlined text-[20px]" aria-hidden="true">settings</span>
           <span>Paramètres</span>
-        </Link>
+        </div>
       </div>
     </aside>
   )

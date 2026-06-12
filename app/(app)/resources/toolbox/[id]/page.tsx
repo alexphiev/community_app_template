@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import { auth } from "@/auth"
 import { getResourceById } from "@/lib/actions/resources"
 import { CommentThread } from "@/components/resources/CommentThread"
 import { TagPill } from "@/components/resources/TagPill"
@@ -17,7 +18,7 @@ export default async function ToolboxItemPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const resource = await getResourceById(id)
+  const [session, resource] = await Promise.all([auth(), getResourceById(id)])
   if (!resource || resource.type !== "toolbox") notFound()
 
   const comments = (resource.comments ?? []) as {
@@ -76,7 +77,11 @@ export default async function ToolboxItemPage({
         </div>
       )}
 
-      <CommentThread resourceId={resource.id} comments={comments} />
+      <CommentThread
+        resourceId={resource.id}
+        comments={comments}
+        currentUser={{ id: session!.user.id!, name: session!.user.name ?? "?" }}
+      />
     </article>
   )
 }

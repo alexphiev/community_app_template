@@ -15,6 +15,7 @@
     "etl:run": "tsx etl/migrate.ts",
     "playwright:test": "playwright test"
   },
+  "postbuild": "pnpm db:migrate",
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.2",
     "@aws-sdk/client-s3": "^3.1059.0",

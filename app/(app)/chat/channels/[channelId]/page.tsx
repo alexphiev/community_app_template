@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import { auth } from "@/auth"
 import { getChannels, getMessages } from "@/lib/actions/chat"
 import { ChatChannelClient } from "@/components/chat/ChatChannelClient"
 
@@ -10,7 +11,8 @@ export default async function ChannelPage({
   params: Promise<{ channelId: string }>
 }) {
   const { channelId } = await params
-  const [allChannels, initialMessages] = await Promise.all([
+  const [session, allChannels, initialMessages] = await Promise.all([
+    auth(),
     getChannels(),
     getMessages(channelId),
   ])
@@ -23,6 +25,11 @@ export default async function ChannelPage({
       channel={channel}
       initialMessages={initialMessages}
       channelId={channelId}
+      currentUser={{
+        id: session!.user.id!,
+        name: session!.user.name ?? null,
+        image: session!.user.image ?? null,
+      }}
     />
   )
 }

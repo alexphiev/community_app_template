@@ -3,18 +3,20 @@
 import { useState, useRef } from "react"
 import { sendMessage } from "@/lib/actions/chat"
 
-export function MessageComposer({ channelId, placeholder }: { channelId: string; placeholder: string }) {
+export function MessageComposer({ channelId, placeholder, onSend }: { channelId: string; placeholder: string; onSend: (id: string, body: string) => void }) {
   const [body, setBody] = useState("")
   const [sending, setSending] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!body.trim() || sending) return
+    const trimmed = body.trim()
+    if (!trimmed || sending) return
     setSending(true)
+    setBody("")
     try {
-      await sendMessage({ channelId, body: body.trim() })
-      setBody("")
+      const result = await sendMessage({ channelId, body: trimmed })
+      onSend(result.id, trimmed)
     } finally {
       setSending(false)
       textareaRef.current?.focus()

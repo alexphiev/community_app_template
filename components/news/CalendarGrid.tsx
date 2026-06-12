@@ -99,8 +99,8 @@ export function CalendarGrid({ events, year, month }: CalendarGridProps) {
                       return (
                         <div
                           key={ev.id}
-                          className={`p-1 rounded border-l-4 ${s.bg} ${s.border} cursor-pointer hover:shadow-sm transition-shadow`}
-                          title={ev.title}
+                          className={`p-1 rounded border-l-4 ${s.bg} ${s.border} cursor-not-allowed hover:shadow-sm transition-shadow`}
+                          title="Fonctionnalité à venir"
                         >
                           <p className={`text-[11px] font-bold leading-tight ${s.text} truncate`}>
                             {ev.title}

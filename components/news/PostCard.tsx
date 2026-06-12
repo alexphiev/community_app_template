@@ -64,21 +64,29 @@ export function PostCard({ post }: { post: PostCardPost }) {
       <div className="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex justify-between rounded-b-lg">
         <div className="flex gap-6">
           <button
-            className="flex items-center gap-2 text-on-surface-variant hover:text-coral-700 transition-colors font-medium text-sm"
+            className="flex items-center gap-2 text-on-surface-variant/40 font-medium text-sm cursor-not-allowed"
             aria-label={`${reactionCount} réaction${reactionCount !== 1 ? "s" : ""}`}
+            disabled
+            title="Fonctionnalité à venir"
           >
             <span className="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
             <span>{reactionCount}</span>
           </button>
           <button
-            className="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm"
+            className="flex items-center gap-2 text-on-surface-variant/40 font-medium text-sm cursor-not-allowed"
             aria-label={`${commentCount} commentaire${commentCount !== 1 ? "s" : ""}`}
+            disabled
+            title="Fonctionnalité à venir"
           >
             <span className="material-symbols-outlined text-[18px]" aria-hidden="true">chat_bubble</span>
             <span>{commentCount}</span>
           </button>
         </div>
-        <button className="flex items-center gap-2 text-on-surface-variant hover:text-teal-700 transition-colors font-medium text-sm">
+        <button
+          className="flex items-center gap-2 text-on-surface-variant/40 font-medium text-sm cursor-not-allowed"
+          disabled
+          title="Fonctionnalité à venir"
+        >
           <span className="material-symbols-outlined text-[18px]" aria-hidden="true">bookmark</span>
           <span>Enregistrer</span>
         </button>
