@@ -1,6 +1,14 @@
-import { signIn } from "@/auth"
+import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const { error } = await searchParams;
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f6faf9]">
       <div className="w-full max-w-sm bg-white rounded-[14px] border border-[#bdc9c7] shadow-sm p-8">
@@ -11,22 +19,40 @@ export default function LoginPage() {
           >
             Hub Pro
           </h1>
-          <p className="text-[14px] text-[#3e4948]">Réseau Info Jeunes Pays de la Loire</p>
+          <p className="text-[14px] text-[#3e4948]">
+            Réseau Info Jeunes Pays de la Loire
+          </p>
         </div>
+
+        {error && (
+          <p className="mb-4 rounded-[6px] bg-red-50 border border-red-200 px-3 py-2 text-[14px] text-red-700">
+            Identifiants incorrects. Vérifiez votre email et mot de passe.
+          </p>
+        )}
 
         <form
           className="flex flex-col gap-5"
           action={async (formData: FormData) => {
-            "use server"
-            await signIn("credentials", {
-              email: formData.get("email"),
-              password: formData.get("password"),
-              redirectTo: "/dashboard",
-            })
+            "use server";
+            try {
+              await signIn("credentials", {
+                email: formData.get("email"),
+                password: formData.get("password"),
+                redirectTo: "/dashboard",
+              });
+            } catch (err) {
+              if (err instanceof AuthError) {
+                redirect("/login?error=1");
+              }
+              throw err;
+            }
           }}
         >
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="email" className="text-[14px] font-medium text-[#181d1c]">
+            <label
+              htmlFor="email"
+              className="text-[14px] font-medium text-[#181d1c]"
+            >
               Email
             </label>
             <input
@@ -41,7 +67,10 @@ export default function LoginPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="password" className="text-[14px] font-medium text-[#181d1c]">
+            <label
+              htmlFor="password"
+              className="text-[14px] font-medium text-[#181d1c]"
+            >
               Mot de passe
             </label>
             <input
@@ -64,5 +93,5 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
-  )
+  );
 }

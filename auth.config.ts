@@ -13,6 +13,7 @@ export const authConfig = {
       return token
     },
     session({ session, token }) {
+      session.user.id = token.sub!
       session.user.role = token.role as Role
       return session
     },

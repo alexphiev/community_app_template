@@ -25,7 +25,7 @@ export function ChatChannelClient({ channel, initialMessages, channelId }: ChatC
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [showInfo, setShowInfo] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
-  const lastIdRef = useRef<string | undefined>(initialMessages.at(-1)?.id)
+  const lastTimestampRef = useRef<string | undefined>(initialMessages.at(-1)?.createdAt?.toISOString())
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -35,13 +35,13 @@ export function ChatChannelClient({ channel, initialMessages, channelId }: ChatC
     const interval = setInterval(async () => {
       try {
         const params = new URLSearchParams({ channelId })
-        if (lastIdRef.current) params.set("after", lastIdRef.current)
+        if (lastTimestampRef.current) params.set("after", lastTimestampRef.current)
         const res = await fetch(`/api/chat/messages?${params}`)
         if (!res.ok) return
         const data = await res.json()
         if (data.messages?.length > 0) {
           setMessages((prev) => [...prev, ...data.messages])
-          lastIdRef.current = data.messages.at(-1)?.id
+          lastTimestampRef.current = data.messages.at(-1)?.createdAt
         }
       } catch {
         // ignore network errors silently

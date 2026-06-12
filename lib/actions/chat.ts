@@ -27,11 +27,11 @@ export async function getDirectChannels(userId: string) {
   })
 }
 
-export async function getMessages(channelId: string, after?: string) {
+export async function getMessages(channelId: string, afterTimestamp?: string) {
   return db.query.chatMessages.findMany({
     where: and(
       eq(chatMessages.channelId, channelId),
-      after ? gt(chatMessages.id, after) : undefined,
+      afterTimestamp ? gt(chatMessages.createdAt, new Date(afterTimestamp)) : undefined,
     ),
     with: { author: { columns: { id: true, name: true, image: true } } },
     orderBy: [asc(chatMessages.createdAt)],

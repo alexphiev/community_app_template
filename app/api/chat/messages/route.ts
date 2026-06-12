@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   const { searchParams } = req.nextUrl
   const channelId = searchParams.get("channelId")
-  const after = searchParams.get("after") ?? undefined
+  const after = searchParams.get("after") ?? undefined // ISO timestamp of last seen message
 
   if (!channelId) return NextResponse.json({ error: "channelId requis" }, { status: 400 })
 
