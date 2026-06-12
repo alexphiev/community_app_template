@@ -1,6 +1,6 @@
 // Run once: DATABASE_URL=... SEED_ADMIN_EMAIL=you@example.com SEED_ADMIN_PASSWORD=yourpass tsx scripts/seed-admin-password.ts
-import { drizzle } from "drizzle-orm/node-postgres"
-import { Pool } from "pg"
+import { drizzle } from "drizzle-orm/neon-http"
+import { neon } from "@neondatabase/serverless"
 import * as schema from "../db/schema"
 import { eq } from "drizzle-orm"
 import { hash } from "bcryptjs"
@@ -14,8 +14,8 @@ if (!email || !password) {
   process.exit(1)
 }
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL })
-const db = drizzle(pool, { schema })
+const sql = neon(process.env.DATABASE_URL!)
+const db = drizzle(sql, { schema })
 
 const passwordHash = await hash(password, 12)
 
@@ -40,4 +40,3 @@ if (existing) {
   console.log(`Created admin user: ${email}`)
 }
 
-await pool.end()
