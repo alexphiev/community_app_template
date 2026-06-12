@@ -19,7 +19,7 @@ export default async function DashboardPage() {
   const [recentPosts, upcomingEvents, pinnedResources] = await Promise.all([
     getPosts({ page: 1 }),
     getEvents({}),
-    getResources({ type: "documentation", page: 1 }),
+    getResources({ type: "toolbox", page: 1 }),
   ])
 
   const nextEvents = upcomingEvents
@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     .slice(0, 3)
 
   const recentFeedPosts = recentPosts.slice(0, 3)
-  const featuredResources = pinnedResources.filter((r) => r.pinned).slice(0, 4)
+  const featuredResources = pinnedResources.slice(0, 4)
 
   const CATEGORY_BG: Record<string, string> = {
     formation: "bg-teal-700",
@@ -110,7 +110,7 @@ export default async function DashboardPage() {
                   <span className="material-symbols-outlined text-teal-700 text-[20px]" aria-hidden="true">push_pin</span>
                   <h2 className="text-[16px] font-bold text-on-surface">Ressources épinglées</h2>
                 </div>
-                <Link href="/resources/documentation" className="text-teal-700 text-[12px] font-semibold hover:underline">Tout voir</Link>
+                <Link href="/resources/toolbox" className="text-teal-700 text-[12px] font-semibold hover:underline">Tout voir</Link>
               </div>
               <div className="flex gap-4 overflow-x-auto pb-2">
                 {featuredResources.map((r) => (

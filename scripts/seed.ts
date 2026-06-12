@@ -10,7 +10,6 @@ config({ path: ".env" })
 
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-// @ts-expect-error drizzle-orm sql tag not resolved under bundler moduleResolution
 import { sql } from "drizzle-orm";
 import * as schema from "../db/schema";
 import { hash } from "bcryptjs";
