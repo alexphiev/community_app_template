@@ -12,7 +12,11 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-[#f6faf9]">
       <Sidebar role={session.user.role as Role} />
       <div className="ml-64 flex flex-col min-h-screen">
-        <Topbar />
+        <Topbar
+          name={session.user.name ?? ""}
+          email={session.user.email ?? ""}
+          role={session.user.role as Role}
+        />
         <main className="flex-1 p-8 max-w-[1440px] mx-auto w-full" id="main-content">
           {children}
         </main>

@@ -1,23 +1,36 @@
-import { auth, signOut } from "@/auth"
+"use client"
 
-export async function Topbar() {
-  const session = await auth()
-  if (!session) return null
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import type { Role } from "@/lib/roles"
 
-  const initials = session.user.name
-    ?.split(" ")
+const roleLabel: Record<string, string> = {
+  admin_ij_pdl: "Admin IJ PDL",
+  salarie_ij_pdl: "Salarié IJ",
+  pro_reseau_ij: "Pro Réseau",
+  relais_externe: "Relais",
+  guest: "Invité",
+}
+
+type Props = {
+  name: string
+  email: string
+  role: Role
+}
+
+export function Topbar({ name, email, role }: Props) {
+  const initials = name
+    .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
-    .slice(0, 2) ?? "?"
-
-  const roleLabel: Record<string, string> = {
-    admin_ij_pdl: "Admin IJ PDL",
-    salarie_ij_pdl: "Salarié IJ",
-    pro_reseau_ij: "Pro Réseau",
-    relais_externe: "Relais",
-    guest: "Invité",
-  }
+    .slice(0, 2) || "?"
 
   return (
     <header className="h-16 flex justify-between items-center px-8 bg-[#f6faf9] border-b border-[#bdc9c7] sticky top-0 z-40">
@@ -43,30 +56,53 @@ export async function Topbar() {
           disabled
           title="Fonctionnalité à venir"
         >
-          <span className="material-symbols-outlined text-[#3e4948] text-[20px]" aria-hidden="true">
-            notifications
-          </span>
-          <span className="absolute top-1 right-1 w-2 h-2 bg-coral-700 rounded-full" aria-hidden="true" />
+          <span className="material-symbols-outlined text-[#3e4948] text-[20px]" aria-hidden="true">notifications</span>
+          <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" aria-hidden="true" />
         </button>
 
         <div className="flex items-center gap-3 pl-6 border-l border-[#bdc9c7]">
           <div className="text-right">
-            <p className="font-medium text-[14px]">{session.user.name}</p>
-            <p className="text-[#3e4948] text-[12px]">{roleLabel[session.user.role] ?? session.user.role}</p>
+            <p className="font-medium text-[14px]">{name}</p>
+            <p className="text-[#3e4948] text-[12px]">{roleLabel[role] ?? role}</p>
           </div>
-          <form>
-            <button
-              formAction={async () => {
-                "use server"
-                await signOut({ redirectTo: "/login" })
-              }}
-              className="w-10 h-10 rounded-full bg-[#ebefed] flex items-center justify-center text-[14px] font-semibold text-teal-700 hover:bg-[#e5e9e7] transition-colors"
-              aria-label="Se déconnecter"
-              title="Se déconnecter"
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="w-10 h-10 rounded-full bg-[#ebefed] flex items-center justify-center text-[14px] font-semibold text-teal-700 hover:bg-[#e5e9e7] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"
+              aria-label="Menu profil"
             >
               {initials}
-            </button>
-          </form>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="end" className="w-52">
+              <DropdownMenuLabel className="font-normal">
+                <div className="flex flex-col">
+                  <span className="text-[13px] font-semibold text-[#181d1c]">{name}</span>
+                  <span className="text-[11px] text-[#6e7978]">{email}</span>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer flex items-center gap-2"
+                onClick={() => { window.location.href = "/profile" }}
+              >
+                <span className="material-symbols-outlined text-[16px]">person</span>
+                Mon profil
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="text-red-600 focus:text-red-600 cursor-pointer flex items-center gap-2"
+                onClick={() => {
+                  fetch("/api/auth/signout", { method: "POST" }).then(() => {
+                    window.location.href = "/login"
+                  })
+                }}
+              >
+                <span className="material-symbols-outlined text-[16px]">logout</span>
+                Se déconnecter
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
