@@ -78,6 +78,30 @@ export const inviteTokensRelations = relations(inviteTokens, ({ one }) => ({
   createdBy: one(users, { fields: [inviteTokens.createdById], references: [users.id] }),
 }))
 
+export const emailVerificationTokens = pgTable("email_verification_tokens", {
+  token: text("token").primaryKey().$defaultFn(() => createId()),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+  usedAt: timestamp("used_at", { mode: "date" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  token: text("token").primaryKey().$defaultFn(() => createId()),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+  usedAt: timestamp("used_at", { mode: "date" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export const emailVerificationTokensRelations = relations(emailVerificationTokens, ({ one }) => ({
+  user: one(users, { fields: [emailVerificationTokens.userId], references: [users.id] }),
+}))
+
+export const passwordResetTokensRelations = relations(passwordResetTokens, ({ one }) => ({
+  user: one(users, { fields: [passwordResetTokens.userId], references: [users.id] }),
+}))
+
 export const resourceTypeEnum = pgEnum("resource_type", [
   "documentation",
   "toolbox",
