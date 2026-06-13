@@ -1,13 +1,13 @@
-import { signIn } from "@/auth";
-import { AuthError } from "next-auth";
-import { redirect } from "next/navigation";
+import { signIn } from "@/auth"
+import { AuthError } from "next-auth"
+import { redirect } from "next/navigation"
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; reset?: string; verified?: string }>
 }) {
-  const { error } = await searchParams;
+  const { error, reset, verified } = await searchParams
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f6faf9]">
@@ -29,30 +29,37 @@ export default async function LoginPage({
             Identifiants incorrects. Vérifiez votre email et mot de passe.
           </p>
         )}
+        {reset && (
+          <p className="mb-4 rounded-[6px] bg-green-50 border border-green-200 px-3 py-2 text-[14px] text-green-700">
+            Mot de passe mis à jour. Connectez-vous avec votre nouveau mot de passe.
+          </p>
+        )}
+        {verified && (
+          <p className="mb-4 rounded-[6px] bg-green-50 border border-green-200 px-3 py-2 text-[14px] text-green-700">
+            Email confirmé ! Connectez-vous pour accéder à votre compte.
+          </p>
+        )}
 
         <form
           className="flex flex-col gap-5"
           action={async (formData: FormData) => {
-            "use server";
+            "use server"
             try {
               await signIn("credentials", {
                 email: formData.get("email"),
                 password: formData.get("password"),
                 redirectTo: "/dashboard",
-              });
+              })
             } catch (err) {
               if (err instanceof AuthError) {
-                redirect("/login?error=1");
+                redirect("/login?error=1")
               }
-              throw err;
+              throw err
             }
           }}
         >
           <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="email"
-              className="text-[14px] font-medium text-[#181d1c]"
-            >
+            <label htmlFor="email" className="text-[14px] font-medium text-[#181d1c]">
               Email
             </label>
             <input
@@ -67,12 +74,14 @@ export default async function LoginPage({
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="password"
-              className="text-[14px] font-medium text-[#181d1c]"
-            >
-              Mot de passe
-            </label>
+            <div className="flex items-center justify-between">
+              <label htmlFor="password" className="text-[14px] font-medium text-[#181d1c]">
+                Mot de passe
+              </label>
+              <a href="/forgot-password" className="text-[12px] text-teal-700 hover:underline">
+                Mot de passe oublié ?
+              </a>
+            </div>
             <input
               id="password"
               name="password"
@@ -91,7 +100,14 @@ export default async function LoginPage({
             Se connecter
           </button>
         </form>
+
+        <div className="mt-6 pt-5 border-t border-[#e5eaea] text-center">
+          <span className="text-[13px] text-[#6e7978]">Pas encore de compte ? </span>
+          <a href="/register" className="text-[13px] text-teal-700 font-medium hover:underline">
+            Créer un compte
+          </a>
+        </div>
       </div>
     </div>
-  );
+  )
 }
