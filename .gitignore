@@ -45,8 +45,8 @@ etl/data/
 etl/migration-report.json
 
 # AI
-/docs/superpowers/
 .claude/
+.superpowers/
 
 # Playwright
 tests/e2e/.auth/
