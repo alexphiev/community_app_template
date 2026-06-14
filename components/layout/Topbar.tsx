@@ -3,6 +3,7 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -75,32 +76,38 @@ export function Topbar({ name, email, role }: Props) {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" className="w-52">
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col">
-                  <span className="text-[13px] font-semibold text-[#181d1c]">{name}</span>
-                  <span className="text-[11px] text-[#6e7978]">{email}</span>
-                </div>
-              </DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-semibold text-[#181d1c]">{name}</span>
+                    <span className="text-[11px] text-[#6e7978]">{email}</span>
+                  </div>
+                </DropdownMenuLabel>
+              </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="cursor-pointer flex items-center gap-2"
-                onClick={() => { window.location.href = "/profile" }}
-              >
-                <span className="material-symbols-outlined text-[16px]">person</span>
-                Mon profil
-              </DropdownMenuItem>
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  className="cursor-pointer flex items-center gap-2"
+                  onClick={() => { window.location.href = "/profile" }}
+                >
+                  <span className="material-symbols-outlined text-[16px]">person</span>
+                  Mon profil
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="text-red-600 focus:text-red-600 cursor-pointer flex items-center gap-2"
-                onClick={() => {
-                  fetch("/api/auth/signout", { method: "POST" }).then(() => {
-                    window.location.href = "/login"
-                  })
-                }}
-              >
-                <span className="material-symbols-outlined text-[16px]">logout</span>
-                Se déconnecter
-              </DropdownMenuItem>
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  className="text-red-600 focus:text-red-600 cursor-pointer flex items-center gap-2"
+                  onClick={() => {
+                    fetch("/api/auth/signout", { method: "POST" }).then(() => {
+                      window.location.href = "/login"
+                    })
+                  }}
+                >
+                  <span className="material-symbols-outlined text-[16px]">logout</span>
+                  Se déconnecter
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

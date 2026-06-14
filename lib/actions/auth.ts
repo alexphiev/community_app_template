@@ -104,11 +104,17 @@ export async function forgotPassword(formData: FormData) {
       userId: user.id,
       expiresAt: new Date(Date.now() + 60 * 60 * 1000),
     })
-    await sendPasswordResetEmail({
-      to: user.email!,
-      name: user.name,
-      resetUrl: `${BASE_URL}/reset-password?token=${token}`,
-    })
+    try {
+      await sendPasswordResetEmail({
+        to: user.email!,
+        name: user.name,
+        resetUrl: `${BASE_URL}/reset-password?token=${token}`,
+      })
+    } catch (err) {
+      console.error("[forgotPassword] Resend error:", err)
+    }
+  } else {
+    console.log("[forgotPassword] No user found for email:", parsed.data.email)
   }
 
   return { success: true }
